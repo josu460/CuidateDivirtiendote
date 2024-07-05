@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dietas Registradas</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card shadow">
+                    <div class="card-header text-center bg-success text-white">
+                        <h2>Dietas Registradas</h2>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre de la dieta</th>
+                                    <th>Descripción</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for dieta in dietas %}
+                                <tr>
+                                    <td>{{dieta.0}}</td>
+                                    <td>{{dieta.1}}</td>
+                                    <td>{{dieta.2}}</td>
+                                    <td>
+                                        <a href="/editarD/{{dieta.0}}" class="btn btn-primary btn-sm">Editar</a>
+                                        <a href="/eliminarD/{{dieta.0}}" onclick="return eliminar()" class="btn btn-danger btn-sm">Borrar</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function eliminar() {
+            return confirm('¿Estás seguro de que deseas eliminar esta dieta?');
+        }
+    </script>
+</body>
+</html>

@@ -133,6 +133,31 @@ body {
     height: auto;
 }
 
+.card {
+  border-radius: 15px;
+  overflow: hidden;
+}
 
+.card-header {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.btn-primary {
+  background-color: #0096d2;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0096d2;
+}
+
+.form-control {
+  border-radius: 10px;
+}
+
+textarea.form-control {
+  resize: none;
+}
 
 

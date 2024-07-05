@@ -8,6 +8,25 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary ">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Cuidate-Divirtiendote</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="index.html"></a>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
     <div class="container">
         <h1 class="my-4">CUÍDATE DIVIRTIÉNDOTE</h1>
         <div class="row">
@@ -15,7 +34,9 @@
                 <div class="card custom-card">
                     <img src="{{ url_for('static', filename='IMG/cuerda.jpg') }}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <p class="card-text">Texto de la imagen 1.</p>
+                        <p class="card-text">Registrate</p>
+                        <a href="/registro" class="btn btn-primary">Registrarte</a>
+
                     </div>
                 </div>
             </div>
@@ -23,7 +44,9 @@
                 <div class="card custom-card">
                     <img src="{{ url_for('static', filename='IMG/comidasana.avif') }}" class="card-img-top" alt="fisica">
                     <div class="card-body">
-                        <p class="card-text">Texto de la imagen 2.</p>
+                        <p class="card-text">Dietas</p>
+                        
+                        <a href="/dietasR" class="btn btn-primary">Crear Dietas</a>
                     </div>
                 </div>
             </div>
@@ -31,7 +54,9 @@
                 <div class="card custom-card">
                     <img src="{{ url_for('static', filename='IMG/original.jpg') }}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <p class="card-text">Texto de la imagen 3.</p>
+
+                        <p class="card-text">Rutinas de ejercicio</p>
+                        <a href="/ejercicio" class="btn btn-primary">Crear Ejercicios</a>
                     </div>
                 </div>
             </div>

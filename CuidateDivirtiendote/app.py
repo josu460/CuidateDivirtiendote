@@ -47,6 +47,78 @@ def plantilla():
 def registro():
     return render_template('registro_usuario.html')
 
+@app.route('/dietasR')
+def dietasR():
+    return render_template('dietasR.html')
+
+@app.route('/verDietas')
+def verDietas():
+    try:
+        cursor = mysql.connection.cursor()
+        cursor.execute('SELECT * FROM dieta')
+        consultaD = cursor.fetchall()
+        print(consultaD)
+        return render_template('consulta_dietas.html', dietas = consultaD)
+    except Exception as e:
+        print(e)
+        return 'Error al consultar dietas'
+    
+
+@app.route('/GuardarDieta', methods=['POST'])
+def GuardarDieta():
+    if request.method == 'POST':
+        try:
+            Fnombre = request.form['dietName']
+            Fdescripcion = request.form['dietDescription']
+            cursor = mysql.connection.cursor()
+            cursor.execute('INSERT INTO dieta(Nombre, Descripcion) VALUES (%s, %s)', (Fnombre, Fdescripcion))
+            mysql.connection.commit()
+            flash('Dieta agregada correctamente')
+            return redirect(url_for('dietasR'))
+        
+        except Exception as e:
+            flash('Error al agregar dieta' + str(e))
+            return redirect(url_for('dietasR'))
+        
+
+@app.route('/eliminarD/<id>')
+def eliminarD(id):
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute('DELETE FROM dieta WHERE ID_dieta = %s', [id])
+        mysql.connection.commit()
+        flash('Dieta eliminada correctamente')
+        return redirect(url_for('verDietas'))
+    except Exception as e:
+        flash('Error al eliminar la dieta: ' + str(e))
+        return redirect(url_for('verDietas'))
+    
+
+@app.route('/editarD/<id>')
+def editarD(id):
+    cur= mysql.connection.cursor()
+    cur.execute('select * from dieta where ID_dieta=%s',[id])
+    dietaE= cur.fetchone()
+    return render_template('editar_dietas.html', dieta= dietaE)
+
+@app.route('/ActualizarDieta/<id>', methods=['POST'])
+def ActualizarDieta(id):
+    if request.method == 'POST':
+        try:
+            Enombre = request.form['dietName']
+            Edescripcion = request.form['dietDescription']
+
+            # Enviamos a la BD
+            cursor = mysql.connection.cursor()
+            cursor.execute('UPDATE usuarios set Nombre=%s ,Descripcion=%s where ID_dieta=%s', (Enombre,Edescripcion, id))
+            mysql.connection.commit()
+            flash('Dieta editada correctamente')
+            return redirect(url_for('verDietas'))
+        
+        except Exception as e:
+            flash('Error al guardar la dieta:' + str(e))
+            return redirect(url_for('verDietas'))
+
 @app.route('/verUsuarios')
 def verUsuarios():
     try:

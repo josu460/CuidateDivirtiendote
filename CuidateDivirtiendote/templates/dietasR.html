@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Dietas</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-header text-center bg-primary text-white">
+                        <h2>Registrar Dieta</h2>
+                    </div>
+                    <div class="card-body">
+                        <form action="/GuardarDieta" method="POST">
+                            <div class="form-group">
+                                <label for="dietName">Nombre de la Dieta</label>
+                                <input type="text" class="form-control" id="dietName" name="dietName" placeholder="Introduce el nombre de la dieta" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="dietDescription">Descripción</label>
+                                <textarea class="form-control" id="dietDescription" name="dietDescription" rows="3" placeholder="Introduce una descripción" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Registrar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
