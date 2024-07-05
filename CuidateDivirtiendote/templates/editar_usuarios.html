@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar usuarios</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    
+
+
+<div class="container">
+    <h1 class="text-center mt-4 mb-4 display-4 text-info">Editar usuario</h1>
+    
+        <form action="/ActualizarUsuario/{{usuario.0}}" method="post">
+    
+            <div class="mb-3">
+                <label>Nombre:</label>
+                <input type="text" name="txtnombre" value="{{usuario.1}}" class="form-control">
+            </div>
+    
+            <div class="mb-3">
+                <label>Apellido Paterno</label>
+                <input type="text" name="txtapellido_paterno"  value="{{usuario.2}}" class="form-control">
+        
+            </div>
+    
+            <div class="mb-3">
+                <label>Apellido Materno</label>
+                <input type="text" name="txtapellido_materno" value="{{usuario.3}}" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label>Número de Telefono</label>
+                <input type="text" name="txtnumero_telefono" value="{{usuario.4}}" class="form-control">
+            </div>
+    
+            <div class="mb-3">
+                <label>Email</label>
+                <input type="text" name="txtemail" value="{{usuario.5}}" class="form-control">
+        
+            </div>
+    
+            <div class="mb-3">
+                <label>Contraseña</label>
+                <input type="password" name="txtcontrasena" value="{{usuario.6}}" class="form-control">
+            </div>
+
+            <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-outline-info mb-5">Editar Usuario</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

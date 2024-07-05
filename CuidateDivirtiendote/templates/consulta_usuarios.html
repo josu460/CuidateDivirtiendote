@@ -3,43 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Usuarios Registrados</title>
+    <title>Usuarios Registrados</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
-    <div class="col-md-7">
-        <!-- Aquí va la tabla -->
+
+
+    <div class="col-md-12">
+        <!-- aqui va la tabla -->
         <table class="table table-dark">
             <thead>
                 <tr class="table-active">
-                    <th scope="col">#</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Apellido Paterno</th>
-                    <th scope="col">Apellido Materno</th>
-                    <th scope="col">Número de Teléfono</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Acciones</th>
+                    <td>ID:</td>
+                    <td>Nombre</td>
+                    <td>Apellido Paterno</td>
+                    <td>Apellido Materno </td>
+                    <td>Número de telefono</td>
+                    <td>Email</td>
+                    <td>Acciones</td>
                 </tr>
             </thead>
-            <tbody>
-                {% for usuario in usuarios %}
-                <tr>
-                    <th scope="row">{{ loop.index }}</th>
-                    <td>{{ usuario.0 }}</td>
-                    <td>{{ usuario.1 }}</td>
-                    <td>{{ usuario.2 }}</td>
-                    <td>{{ usuario.3 }}</td>
-                    <td>
-                        <a href="/editar/{{ usuario.id }}" class="btn btn-primary btn-sm">Editar</a>
-                        <a href="/eliminar/{{ usuario.id }}" onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?');" class="btn btn-danger btn-sm">Eliminar</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
+    
+
+
+
+    <tbody>
+            {% for usuario in usuarios %}
+            <tr>
+            <td>{{usuario.0}}</td>
+            <td>{{usuario.1}}</td>
+            <td>{{usuario.2}}</td>
+            <td>{{usuario.3}}</td>
+            <td>{{usuario.4}}</td>
+            <td>{{usuario.5}}</td>
+
+            <td><a href="/editar/{{usuario.0}} "  class="btn btn-primary"> Editar</a>
+            <a href="/eliminar/{{usuario.0}}" onclick="return eliminar()" class="btn btn-danger"> Borrar</a></td>
+
+            {%endfor%}
+        </tr>
+        </tbody>
         </table>
-    </div>
+        </div> 
+   
+    <script>
+        function eliminar() {
+            return confirm("¿Desea eliminar el usuario?");
+        }
+    </script>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

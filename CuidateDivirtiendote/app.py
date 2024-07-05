@@ -51,7 +51,7 @@ def registro():
 def verUsuarios():
     try:
         cursor = mysql.connection.cursor()
-        cursor.execute('SELECT Nombre, Apellido_paterno, Apellido_materno, Numero_Telefono, Email FROM usuarios')
+        cursor.execute('SELECT ID_usuario,Nombre, Apellido_paterno, Apellido_materno, Numero_Telefono, Email FROM usuarios')
         consultaU = cursor.fetchall()
         print(consultaU)
         return render_template('consulta_usuarios.html', usuarios = consultaU)
@@ -80,6 +80,46 @@ def guardarUsuario():
             flash('Error al agregar usuario' + str(e))
             return redirect(url_for('registro'))
 
+@app.route('/eliminar/<id>')
+def eliminar(id):
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute('DELETE FROM usuarios WHERE ID_usuario = %s', [id])
+        mysql.connection.commit()
+        flash('Usuario eliminado correctamente')
+        return redirect(url_for('verUsuarios'))
+    except Exception as e:
+        flash('Error al eliminar el usuario: ' + str(e))
+        return redirect(url_for('verUsuarios'))
+    
+
+@app.route('/editar/<id>')
+def editar(id):
+    cur= mysql.connection.cursor()
+    cur.execute('select * from usuarios where ID_usuario=%s',[id])
+    usuarioE= cur.fetchone()
+    return render_template('editar_usuarios.html', usuario= usuarioE)
+
+@app.route('/ActualizarUsuario/<id>', methods=['POST'])
+def ActualizarUsuario(id):
+    if request.method == 'POST':
+        try:
+            Enombre = request.form['txtnombre']
+            Eapellido_p = request.form['txtapellido_paterno']
+            Eapellido_m = request.form['txtapellido_materno']
+            Enumerot = request.form['txtnumero_telefono']
+            Ecorreo = request.form['txtemail']
+            Econtrasena = request.form['txtcontrasena']
+            # Enviamos a la BD
+            cursor = mysql.connection.cursor()
+            cursor.execute('UPDATE usuarios set Nombre=%s , Apellido_paterno=%s , Apellido_materno=%s , Numero_Telefono=%s , Email=%s, Contraseña=%s where ID_usuario=%s', (Enombre,Eapellido_p ,Eapellido_m,Enumerot,Ecorreo,Econtrasena, id))
+            mysql.connection.commit()
+            flash('Usuario editado correctamente')
+            return redirect(url_for('verUsuarios'))
+        
+        except Exception as e:
+            flash('Error al guardar el usuario:' + str(e))
+            return redirect(url_for('verUsuarios'))
 
 if __name__ == '__main__':
     app.run(port=3000, debug=True)
