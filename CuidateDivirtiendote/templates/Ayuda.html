@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menú</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+<div class="header">
+  <div class="header-buttons">
+    <button onclick="abrirIniciarSesion()">Iniciar Sesión</button>
+    <button id="crearcuenta">Crear Cuenta</button>
+    <button onclick="abrirAyuda()">Ayuda</button> <!-- Botón de Ayuda -->
+  </div>
+</div>
+
+<h1 class="titulo">CUIDATE DIVIRTIENDOTE</h1>
+
+<div class="content">
+  <!-- Contenido de la página -->
+</div>
+
+<script>
+document.getElementById("crearcuenta").addEventListener("click", function() {
+  window.open("crear_cuenta.html", "_blank");
+});
+
+function abrirIniciarSesion() {
+  window.open("iniciar_sesion.html", "_blank");
+}
+
+function abrirAyuda() {
+  var ayudaWindow = window.open("", "_blank");
+  ayudaWindow.document.write(`
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Ayuda</title>
+    </head>
+    <body>
+      <h1>AYUDA</h1>
+      <p>
+        CUIDATE DIVIRTIENDOTE es un sitio web diseñado para ayudarte a mantener un estilo de vida saludable. Aquí encontrarás:
+        <ul>
+          <li>Recetas de cocina saludables para bajar o subir de peso de manera saludable.</li>
+          <li>Rutinas de ejercicio diseñadas para subir masa muscular, quemar grasa o mejorar tu estado de salud general.</li>
+        </ul>
+        Si tienes alguna pregunta sobre el funcionamiento del sitio o necesitas más información, no dudes en contactarnos.
+      </p>
+    </body>
+    </html>
+  `);
+}
+</script>
+
+</body>
+</html>

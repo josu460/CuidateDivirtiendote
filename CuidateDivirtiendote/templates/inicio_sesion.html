@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iniciar Sesión</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+<style>
+/* Styles del archivo styles.css */
+</style>
+</head>
+<body>
+
+<div class="superpuesto">
+  <div class="input-container">
+    <p>"¡Bienvenido de nuevo! Estamos encantados de tenerte de vuelta. Esperamos que disfrutes de todas las funciones y beneficios que tenemos para ofrecerte. ¡Gracias por ser parte de nuestra comunidad!"</p>
+  </div>
+  <div class="logo-container">
+    <img src="{{ url_for('static', filename='IMG/logo.png') }}" alt="Logo">
+    <p style="font-size: 28px; font-weight: bold; color: white;">CUIDATE DIVIRTIENDOTE</p>
+  </div>
+  <div class="crear-cuenta-form">
+    <h2>Iniciar Sesión</h2>
+    <form id="loginForm">
+      <label for="correo">Correo:</label><br>
+      <input type="email" id="correo" name="correo" required><br><br>
+      <label for="contrasena">Contraseña:</label><br>
+      <input type="password" id="contrasena" name="contrasena" required><br><br>
+      <div class="remember-me">
+        <input type="checkbox" id="remember" name="remember">
+        <label for="remember">Remember me</label>
+      </div>
+      <div class="login-button">
+        <button type="submit">Iniciar Sesión</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+  var correo = document.getElementById("correo").value;
+  var contrasena = document.getElementById("contrasena").value;
+  var usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+  var usuarioEncontrado = usuarios.find(function(usuario) {
+    return usuario.correo === correo && usuario.contraseña === contrasena;
+  });
+  if (usuarioEncontrado) {
+    window.location.href = "menu.html";
+  } else {
+    alert("Error al iniciar sesión. Por favor, verifica tu correo y contraseña.");
+  }
+});
+</script>
+
+</body>
+</html>
