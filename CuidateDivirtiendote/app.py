@@ -97,7 +97,7 @@ def eliminarD(id):
 @app.route('/editarD/<id>')
 def editarD(id):
     cur= mysql.connection.cursor()
-    cur.execute('select * from dieta where ID_dieta=%s',[id])
+    cur.execute('select * from dieta where ID_dieta =%s',[id])
     dietaE= cur.fetchone()
     return render_template('editar_dietas.html', dieta= dietaE)
 
@@ -110,7 +110,7 @@ def ActualizarDieta(id):
 
             # Enviamos a la BD
             cursor = mysql.connection.cursor()
-            cursor.execute('UPDATE usuarios set Nombre=%s ,Descripcion=%s where ID_dieta=%s', (Enombre,Edescripcion, id))
+            cursor.execute('UPDATE dieta set Nombre=%s ,Descripcion=%s where ID_dieta=%s', (Enombre,Edescripcion, id))
             mysql.connection.commit()
             flash('Dieta editada correctamente')
             return redirect(url_for('verDietas'))
