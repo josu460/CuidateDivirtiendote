@@ -1,20 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuarios Registrados</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-</head>
-<body>
+{% extends "plantilla.html" %}
+{% block body %}
 
-
-    <div class="col-md-12">
-        <!-- aqui va la tabla -->
-        <table class="table table-dark">
-            <thead>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card shadow">
+                <div class="card-header text-center bg-success text-white">
+                    <h2>Usarios Registrados</h2>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead class="thead-light">
                 <tr class="table-active">
                     <td>ID:</td>
                     <td>Nombre</td>
@@ -43,20 +39,18 @@
             <a href="/eliminar/{{usuario.0}}" onclick="return eliminar()" class="btn btn-danger"> Borrar</a></td>
 
             {%endfor%}
-        </tr>
         </tbody>
-        </table>
-        </div> 
-   
+    </table>
+</div>
+</div>
+</div>
+</div>
+</div>
+
     <script>
         function eliminar() {
             return confirm("¿Desea eliminar el usuario?");
         }
     </script>
 
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js" integrity="sha384-OKeXNq3vOY4S4I8oeFNSXkb4e4I5gkKtk4K0tF4RjOoAdFmdKs9Bd+qUOPl6JqZ" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+YFgp0yFqDtdW9x1Bkx2rM7f1lKkk0HhTJ2" crossorigin="anonymous"></script>
-</body>
-</html>
+ {% endblock %}

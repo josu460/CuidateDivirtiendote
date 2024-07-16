@@ -11,6 +11,7 @@ app.secret_key = 'mysecretkey'
 
 mysql = MySQL(app)
 
+
 @app.errorhandler(404)
 def paginano(e):
     return 'Revisar tu sintaxis: No encontré nada'
