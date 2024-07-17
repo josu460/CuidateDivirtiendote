@@ -32,6 +32,11 @@ def pruebaConexion():
 def index():
     return render_template('index.html')
 
+
+@app.route('/blog')
+def blog():
+    return render_template('blog.html')
+
 @app.route('/login')
 def login():
     return render_template('inicio_sesion.html')
