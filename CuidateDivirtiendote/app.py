@@ -52,6 +52,10 @@ def registro():
 def dietasR():
     return render_template('dietasR.html')
 
+@app.route('/ejercicioR')
+def ejercicioR():
+    return render_template('ejerciciosR.html')
+
 @app.route('/verDietas')
 def verDietas():
     try:
@@ -63,7 +67,19 @@ def verDietas():
     except Exception as e:
         print(e)
         return 'Error al consultar dietas'
-    
+
+
+@app.route('/verEjercicios')
+def verEjercicios():
+    try:
+        cursor = mysql.connection.cursor()
+        cursor.execute('SELECT * FROM ejercicios')
+        consultaE = cursor.fetchall()
+        print(consultaE)
+        return render_template('consulta_ejercicios.html', ejercicios = consultaE) 
+    except Exception as e:
+        print(e)
+        return 'Error al consultar ejercicios'
 
 @app.route('/GuardarDieta', methods=['POST'])
 def GuardarDieta():
@@ -81,6 +97,21 @@ def GuardarDieta():
             flash('Error al agregar dieta' + str(e))
             return redirect(url_for('dietasR'))
         
+@app.route('/GuardarEjercicio', methods=['POST'])
+def GuardarEjercicio():
+    if request.method == 'POST':
+        try:
+            Fnombre = request.form['ejerName']
+            fmusculo = request.form['ejermusculo']
+            ftipo = request.form['ejertipo']
+            cursor = mysql.connection.cursor()
+            cursor.execute('INSERT INTO ejercicios(Nombre, Grupo_muscular, Tipo_ejercicio) VALUES (%s, %s, %s)', (Fnombre, fmusculo, ftipo))
+            mysql.connection.commit()
+            flash('Ejercicio agregado correctamente')
+            return redirect(url_for('ejercicioR'))
+        except Exception as e:
+            flash('Error al agregar ejercicio' + str(e))
+            return redirect(url_for('ejercicioR'))
 
 @app.route('/eliminarD/<id>')
 def eliminarD(id):
@@ -94,6 +125,17 @@ def eliminarD(id):
         flash('Error al eliminar la dieta: ' + str(e))
         return redirect(url_for('verDietas'))
     
+@app.route('/eliminarE/<id>')
+def eliminarE(id):
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute('DELETE FROM ejercicios WHERE ID_ejercicio = %s', [id])
+        mysql.connection.commit()
+        flash('Ejercicio eliminado correctamente')
+        return redirect(url_for('verEjercicios'))
+    except Exception as e:
+        flash('Error al eliminar el ejercicio: ' + str(e))
+        return redirect(url_for('verEjercicios'))
 
 @app.route('/editarD/<id>')
 def editarD(id):
@@ -101,6 +143,13 @@ def editarD(id):
     cur.execute('select * from dieta where ID_dieta =%s',[id])
     dietaE= cur.fetchone()
     return render_template('editar_dietas.html', dieta= dietaE)
+
+@app.route('/editarE/<id>')
+def editarE(id):
+    cur= mysql.connection.cursor()
+    cur.execute('select * from ejercicios where ID_ejercicio =%s',[id])
+    ejercicioE= cur.fetchone()
+    return render_template('editar_ejercicios.html', ejercicio= ejercicioE)
 
 @app.route('/ActualizarDieta/<id>', methods=['POST'])
 def ActualizarDieta(id):
@@ -193,6 +242,24 @@ def ActualizarUsuario(id):
         except Exception as e:
             flash('Error al guardar el usuario:' + str(e))
             return redirect(url_for('verUsuarios'))
+
+@app.route('/ActualizarEjercicio/<id>', methods=['POST'])
+def ActualizarEjercicio(id):
+    if request.method == 'POST':
+        try:
+            Enombre = request.form['ejerName']
+            Emusculo = request.form['ejermusculo']
+            Etipo = request.form['ejertipo']
+            # Enviamos a la BD
+            cursor = mysql.connection.cursor()
+            cursor.execute('UPDATE ejercicios set Nombre=%s , Grupo_muscular=%s , Tipo_ejercicio=%s where ID_ejercicio=%s', (Enombre,Emusculo,Etipo, id))
+            mysql.connection.commit()
+            flash('Ejercicio editado correctamente')
+            return redirect(url_for('verEjercicios'))
+        
+        except Exception as e:
+            flash('Error al guardar el ejercicio:' + str(e))
+            return redirect(url_for('verEjercicios'))
 
 if __name__ == '__main__':
     app.run(port=3000, debug=True)

@@ -1,0 +1,35 @@
+{% extends "plantilla.html" %}
+{% block body %}
+
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-header text-center bg-primary text-white">
+                        <h2>Editar Rutina</h2>
+                    </div>
+                    <div class="card-body">
+                        <form action="/ActualizarEjercicio/{{ejercicio.0}}" method="post">
+                            <div class="form-group">
+                                <label for="ejerName">Nombre de la Rutina</label>
+                                <input type="text" class="form-control" id="ejerName" name="ejerName" value="{{ejercicio.1}}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ejermusculo">Grupo Muscular</label>
+                                <textarea class="form-control" id="ejermusculo" name="ejermusculo" rows=3  required>{{ejercicio.2}}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="ejertipo">Tipo de Ejercicio</label>
+                                <input type="text" class="form-control" id="ejertipo" name="ejertipo"  value="{{ejercicio.3}}">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Editar Dieta</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

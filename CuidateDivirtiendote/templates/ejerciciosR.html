@@ -1,0 +1,34 @@
+{% extends "plantilla.html" %}
+{% block body %}
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-header text-center bg-primary text-white">
+                        <h2>Registrar Rutina</h2>
+                    </div>
+                    <div class="card-body">
+                        <form action="/GuardarEjercicio" method="POST">
+                            <div class="form-group">
+                                <label for="ejerName">Nombre de la rutina</label>
+                                <input type="text" class="form-control" id="ejerName" name="ejerName" placeholder="Introduce el nombre del Ejercicio" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ejermusculo">Grupo Muscular</label>
+                                <textarea class="form-control" id="ejermusculo" name="ejermusculo" rows="3" placeholder="Introduce el grupo muscular que trabaja" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="ejertipo">Tipo de Ejercicio</label>
+                                <input type="text" class="form-control" id="ejertipo" name="ejertipo" rows="3" placeholder="Introduce la rutina" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Registrar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+
+{% endblock %}
