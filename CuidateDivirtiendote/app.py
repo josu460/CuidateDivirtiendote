@@ -28,6 +28,10 @@ def pruebaConexion():
         return jsonify({'status': 'Error de conexion', 'mensaje': str(ex)})
 
 
+@app.route('/menuG')
+def sesion():
+    return render_template('menu_general.html')
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -39,7 +43,7 @@ def blog():
 
 @app.route('/login')
 def login():
-    return render_template('inicio_sesion.html')
+    return render_template('login.html')
 
 @app.route('/ayuda')
 def ayuda():
