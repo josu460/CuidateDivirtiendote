@@ -8,7 +8,7 @@ body {
   display: flex;
   flex-direction: column;
   font-family: Arial, sans-serif;
-  background-color: #3a065c;
+  background-color: #5cf049;
   color: white;
   text-align: center;
 }
@@ -21,7 +21,7 @@ body {
 
 /* Header styles */
 .header {
-  background-color: #4c0259;
+  background-color: #5cf049;
   padding: 10px;
   text-align: right;
 }
@@ -65,7 +65,7 @@ body {
 
 /* Card and form styles */
 .custom-card {
-  background-color: #7d2392;
+  background-color: #0096d2;
   border: none;
   margin: 20px;
   padding: 10px;
@@ -87,12 +87,12 @@ body {
 }
 
 .btn-primary {
-  background-color: #0096d2;
+  background-color: #5cf049;
   border: none;
 }
 
 .btn-primary:hover {
-  background-color: #0096d2;
+  background-color: #5cf049;
 }
 
 .form-control {

@@ -1,6 +1,13 @@
 from flask import Flask, request,jsonify, render_template, url_for, redirect, flash
 from flask_mysqldb import MySQL
 
+
+#modelos 
+from models.ModelUser import ModelUser
+
+#entidades 
+from models.entities.User import User
+
 app = Flask(__name__)
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
@@ -11,6 +18,25 @@ app.secret_key = 'mysecretkey'
 
 mysql = MySQL(app)
 
+@app.route('/login', methods=['GET','POST'])
+def login():
+    if request.method == 'POST':
+        #print(request.form['username'])
+        #print(request.form['username'])
+        user = User(0,request.form['Email'],request.form['Contraseña'])
+        logged_user = ModelUser.login(mysql, user)
+        if logged_user != None:
+            if logged_user.Contraseña:
+                return redirect(url_for('sesion'))
+            else:
+                flash('Usuario o contraseña incorrectos')
+                return render_template('login.html')
+        else:
+            flash('Usuario o contraseña incorrectos')
+            return render_template('menu_general.html')
+        return render_template('login.html')
+    else:
+        return render_template('login.html')
 
 @app.errorhandler(404)
 def paginano(e):
@@ -41,9 +67,7 @@ def index():
 def blog():
     return render_template('blog.html')
 
-@app.route('/login')
-def login():
-    return render_template('login.html')
+
 
 @app.route('/ayuda')
 def ayuda():
