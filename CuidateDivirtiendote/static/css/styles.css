@@ -119,7 +119,7 @@ textarea.form-control {
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
-  background-color: #9C27B0;
+  background-color: #5cf049;
 }
 
 .image-text-container img {
@@ -157,7 +157,7 @@ textarea.form-control {
 }
 
 input[type="email"], input[type="password"] {
-  background-color: #f2a7ff;
+  background-color: #59f4ff;
   border: none;
   padding: 10px;
   border-radius: 5px;
@@ -166,7 +166,7 @@ input[type="email"], input[type="password"] {
 }
 
 .crear-cuenta-form {
-  background-color: #B2FF59;
+  background-color: #59f4ff;
   padding: 20px;
   border-radius: 10px;
   text-align: center;

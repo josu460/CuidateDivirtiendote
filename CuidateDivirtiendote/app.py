@@ -18,25 +18,37 @@ app.secret_key = 'mysecretkey'
 
 mysql = MySQL(app)
 
-@app.route('/login', methods=['GET','POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        #print(request.form['username'])
-        #print(request.form['username'])
-        user = User(0,request.form['Email'],request.form['Contraseña'])
+        email = request.form['email']
+        password = request.form['password']
+        print("Email from form:", email)  # Para verificar que el email se obtiene
+        print("Password from form:", password)  # Para verificar que la contraseña se obtiene
+        
+        user = User(0, email, password)
         logged_user = ModelUser.login(mysql, user)
-        if logged_user != None:
+        
+        if logged_user is not None:
             if logged_user.Contraseña:
-                return redirect(url_for('sesion'))
+                print("Logged user password hash:", logged_user.Contraseña)
+                if User.is_authenticated(logged_user.Contraseña, password):
+                    print("Password match")
+                    return redirect(url_for('sesion'))
+                else:
+                    print("Password mismatch")
+                    flash('Usuario o contraseña incorrectos')
+                    return render_template('login.html')
             else:
+                print("No password in database")
                 flash('Usuario o contraseña incorrectos')
                 return render_template('login.html')
         else:
+            print("No user found")
             flash('Usuario o contraseña incorrectos')
-            return render_template('menu_general.html')
-        return render_template('login.html')
-    else:
-        return render_template('login.html')
+            return render_template('login.html')
+    return render_template('login.html')
+
 
 @app.errorhandler(404)
 def paginano(e):

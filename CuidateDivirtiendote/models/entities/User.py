@@ -1,7 +1,6 @@
-from werkzeug.security import check_password_hash
-
+from werkzeug.security import check_password_hash, generate_password_hash
 class User():
-    def __init__(self,ID_usuario, Email ,Contraseña, Apellido_paterno="", Apellido_materno="", Numero_Telefono="", Nombre="") -> None:
+    def __init__(self, ID_usuario, Email, Contraseña, Apellido_paterno="", Apellido_materno="", Numero_Telefono="", Nombre=""):
         self.ID_usuario = ID_usuario
         self.Email = Email
         self.Contraseña = Contraseña
@@ -11,6 +10,11 @@ class User():
         self.Nombre = Nombre
         
     @classmethod
-    def is_authenticated(self, hashed_password, password):
-        return check_password_hash(hashed_password, password)
+    def is_authenticated(cls, hashed_password, password):
+        print("Comparing passwords")
+        if isinstance(hashed_password, bytes):
+            hashed_password = hashed_password.decode('utf-8')
+        result = check_password_hash(hashed_password, password)
+        print("Authentication result:", result)
+        return result
     
