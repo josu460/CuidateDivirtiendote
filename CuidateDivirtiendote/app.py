@@ -1,5 +1,6 @@
 from flask import Flask, request,jsonify, render_template, url_for, redirect, flash
 from flask_mysqldb import MySQL
+from werkzeug.security import generate_password_hash
 
 
 #modelos 
@@ -237,15 +238,20 @@ def guardarUsuario():
             Fcorreo = request.form['txtemail']
             Fcontrasena = request.form['txtcontrasena']
 
+            # Hash de la contraseña
+            hashed_password = generate_password_hash(Fcontrasena)
+            
             cursor = mysql.connection.cursor()
-            cursor.execute('INSERT INTO usuarios(Nombre, Apellido_paterno, Apellido_materno, Numero_Telefono, Email, Contraseña) VALUES (%s, %s, %s, %s, %s, %s)', (Fnombre, Fapellido_p, Fapellido_m, Fnumerot, Fcorreo, Fcontrasena))
+            cursor.execute('INSERT INTO usuarios(Nombre, Apellido_paterno, Apellido_materno, Numero_Telefono, Email, Contraseña) VALUES (%s, %s, %s, %s, %s, %s)', 
+                           (Fnombre, Fapellido_p, Fapellido_m, Fnumerot, Fcorreo, hashed_password))
             mysql.connection.commit()
             flash('Usuario agregado correctamente')
             return redirect(url_for('login'))
         
         except Exception as e:
-            flash('Error al agregar usuario' + str(e))
+            flash('Error al agregar usuario: ' + str(e))
             return redirect(url_for('registro'))
+
 
 @app.route('/eliminar/<id>')
 def eliminar(id):
