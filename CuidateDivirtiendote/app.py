@@ -32,7 +32,7 @@ def login():
         
         if logged_user is not None:
             if logged_user.is_authenticated(logged_user.Contraseña, password):
-                return redirect(url_for('sesion'))
+                return redirect(url_for('menuAdmin'))
             else:
                 flash('Contraseña incorrecta', 'danger')
                 return redirect(url_for('login'))
@@ -58,14 +58,19 @@ def pruebaConexion():
         return jsonify({'status': 'Error de conexion', 'mensaje': str(ex)})
 
 
-@app.route('/menuG')
-def sesion():
-    return render_template('menu_general.html')
+
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('menu_general.html')
 
+@app.route('/registrox')
+def registrox():
+    return render_template('resgistrox.html')
+
+@app.route('/menuAdmin')
+def menuAdmin():
+    return render_template('index.html')
 
 @app.route('/blog')
 def blog():
