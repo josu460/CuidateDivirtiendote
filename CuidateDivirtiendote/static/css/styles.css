@@ -87,9 +87,9 @@ body {
 }
 
 .btn-primary {
-  top: 20px; /* Mueve el botón hacia abajo */
+   
   padding: 10px 20px; 
-  background-color: #49b3f0;
+  background-color: #5cf049;
   border: none;
   position: relative; /* Asegúrate de que el posicionamiento relativo esté habilitado */
 }
