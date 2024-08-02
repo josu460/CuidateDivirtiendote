@@ -313,16 +313,29 @@ def ActualizarUsuario(id):
             Ecorreo = request.form['txtemail']
             Econtrasena = request.form['txtcontrasena']
             Erole = request.form['txtrole']
-            # Enviamos a la BD
+
             cursor = mysql.connection.cursor()
-            cursor.execute('UPDATE usuarios set Nombre=%s , Apellido_paterno=%s , Apellido_materno=%s , Numero_Telefono=%s , Email=%s, Contraseña=%s, Rol=%s where ID_usuario=%s', (Enombre,Eapellido_p ,Eapellido_m,Enumerot,Ecorreo,Econtrasena,Erole, id))
+
+            if Econtrasena:  # Si se proporciona una nueva contraseña
+                hashed_password = generate_password_hash(Econtrasena)
+                cursor.execute(
+                    'UPDATE usuarios SET Nombre=%s, Apellido_paterno=%s, Apellido_materno=%s, Numero_Telefono=%s, Email=%s, Contraseña=%s, Rol=%s WHERE ID_usuario=%s',
+                    (Enombre, Eapellido_p, Eapellido_m, Enumerot, Ecorreo, hashed_password, Erole, id)
+                )
+            else:  # Si no se proporciona una nueva contraseña
+                cursor.execute(
+                    'UPDATE usuarios SET Nombre=%s, Apellido_paterno=%s, Apellido_materno=%s, Numero_Telefono=%s, Email=%s, Rol=%s WHERE ID_usuario=%s',
+                    (Enombre, Eapellido_p, Eapellido_m, Enumerot, Ecorreo, Erole, id)
+                )
+
             mysql.connection.commit()
             flash('Usuario editado correctamente', 'success')
             return redirect(url_for('verUsuarios'))
-        
+
         except Exception as e:
-            flash('Error al guardar el usuario:' + str(e))
+            flash('Error al guardar el usuario: ' + str(e), 'danger')
             return redirect(url_for('verUsuarios'))
+
 
 @app.route('/ActualizarEjercicio/<id>', methods=['POST'])
 @login_required

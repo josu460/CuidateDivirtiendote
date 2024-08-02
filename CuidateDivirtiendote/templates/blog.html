@@ -1,7 +1,13 @@
 {% extends "plantilla.html" %}
 {% block body %}
 
-<h1>Blog</h1>
-
+<div class="content-wrapper">
+    <div class="image-text-container">
+        <img src="{{ url_for('static', filename='IMG/cuerda.jpg') }}" alt="Imagen de diabetes">
+        <p class="titulo">¿Cómo afecta psicológicamente la diabetes?</p>
+        <p>Jun 6, 2024 | Salud</p>
+        <p>Saber cómo afecta psicológicamente la diabetes es fundamental para comprender el impacto completo de esta enfermedad crónica. La diabetes no solo repercute en la salud física, sino que también tiene efectos profundos en la salud mental y emocional de quienes la...</p>
+    </div>
+</div>
 
 {% endblock %}
