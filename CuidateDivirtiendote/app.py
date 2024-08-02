@@ -47,10 +47,19 @@ def login():
     
     return render_template('login.html')
 
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
+
 @app.errorhandler(404)
 def paginano(e):
     return 'Revisar tu sintaxis: No encontré nada'
 
+@app.errorhandler(401)
+def noautorizado(e):
+    return redirect(url_for('login'))
 
 @app.route('/pruebaConexion')
 def pruebaConexion():
@@ -316,3 +325,4 @@ def ActualizarEjercicio(id):
 
 if __name__ == '__main__':
     app.run(port=3000, debug=True)
+    
