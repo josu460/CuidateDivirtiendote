@@ -15,7 +15,7 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'cuidatedivirtiendote'    
 
-app.secret_key = 'mysecretkey'
+app.secret_key = 'my_secret'
 
 mysql = MySQL(app)
 
@@ -31,25 +31,16 @@ def login():
         logged_user = ModelUser.login(mysql, user)
         
         if logged_user is not None:
-            if logged_user.Contraseña:
-                print("Logged user password hash:", logged_user.Contraseña)
-                if User.is_authenticated(logged_user.Contraseña, password):
-                    print("Password match")
-                    return redirect(url_for('sesion'))
-                else:
-                    print("Password mismatch")
-                    flash('Usuario o contraseña incorrectos')
-                    return render_template('login.html')
+            if logged_user.is_authenticated(logged_user.Contraseña, password):
+                return redirect(url_for('sesion'))
             else:
-                print("No password in database")
-                flash('Usuario o contraseña incorrectos')
-                return render_template('login.html')
+                flash('Contraseña incorrecta', 'danger')
+                return redirect(url_for('login'))
         else:
-            print("No user found")
-            flash('Usuario o contraseña incorrectos')
-            return render_template('login.html')
+            flash('Correo electrónico no encontrado', 'danger')
+            return redirect(url_for('login'))
+    
     return render_template('login.html')
-
 
 @app.errorhandler(404)
 def paginano(e):
@@ -136,7 +127,7 @@ def GuardarDieta():
             cursor = mysql.connection.cursor()
             cursor.execute('INSERT INTO dieta(Nombre, Descripcion) VALUES (%s, %s)', (Fnombre, Fdescripcion))
             mysql.connection.commit()
-            flash('Dieta agregada correctamente')
+            flash('Dieta agregada correctamente', 'success')
             return redirect(url_for('dietasR'))
         
         except Exception as e:
@@ -153,7 +144,7 @@ def GuardarEjercicio():
             cursor = mysql.connection.cursor()
             cursor.execute('INSERT INTO ejercicios(Nombre, Grupo_muscular, Tipo_ejercicio) VALUES (%s, %s, %s)', (Fnombre, fmusculo, ftipo))
             mysql.connection.commit()
-            flash('Ejercicio agregado correctamente')
+            flash('Ejercicio agregado correctamente' , 'success')
             return redirect(url_for('ejercicioR'))
         except Exception as e:
             flash('Error al agregar ejercicio' + str(e))
@@ -165,10 +156,10 @@ def eliminarD(id):
         cur = mysql.connection.cursor()
         cur.execute('DELETE FROM dieta WHERE ID_dieta = %s', [id])
         mysql.connection.commit()
-        flash('Dieta eliminada correctamente')
+        flash('Dieta eliminada correctamente', 'success')
         return redirect(url_for('verDietas'))
     except Exception as e:
-        flash('Error al eliminar la dieta: ' + str(e))
+        flash('Error al eliminar la dieta: ' + str(e), 'danger')
         return redirect(url_for('verDietas'))
     
 @app.route('/eliminarE/<id>')
@@ -177,7 +168,7 @@ def eliminarE(id):
         cur = mysql.connection.cursor()
         cur.execute('DELETE FROM ejercicios WHERE ID_ejercicio = %s', [id])
         mysql.connection.commit()
-        flash('Ejercicio eliminado correctamente')
+        flash('Ejercicio eliminado correctamente' , 'success')
         return redirect(url_for('verEjercicios'))
     except Exception as e:
         flash('Error al eliminar el ejercicio: ' + str(e))
@@ -208,7 +199,7 @@ def ActualizarDieta(id):
             cursor = mysql.connection.cursor()
             cursor.execute('UPDATE dieta set Nombre=%s ,Descripcion=%s where ID_dieta=%s', (Enombre,Edescripcion, id))
             mysql.connection.commit()
-            flash('Dieta editada correctamente')
+            flash('Dieta editada correctamente', 'success')
             return redirect(url_for('verDietas'))
         
         except Exception as e:
@@ -245,7 +236,7 @@ def guardarUsuario():
             cursor.execute('INSERT INTO usuarios(Nombre, Apellido_paterno, Apellido_materno, Numero_Telefono, Email, Contraseña) VALUES (%s, %s, %s, %s, %s, %s)', 
                            (Fnombre, Fapellido_p, Fapellido_m, Fnumerot, Fcorreo, hashed_password))
             mysql.connection.commit()
-            flash('Usuario agregado correctamente')
+            flash('Usuario agregado correctamente', 'success')
             return redirect(url_for('login'))
         
         except Exception as e:
@@ -259,10 +250,10 @@ def eliminar(id):
         cur = mysql.connection.cursor()
         cur.execute('DELETE FROM usuarios WHERE ID_usuario = %s', [id])
         mysql.connection.commit()
-        flash('Usuario eliminado correctamente')
+        flash('Usuario eliminado correctamente' , 'success')
         return redirect(url_for('verUsuarios'))
     except Exception as e:
-        flash('Error al eliminar el usuario: ' + str(e))
+        flash('Error al eliminar el usuario: ' + str(e) , 'danger')
         return redirect(url_for('verUsuarios'))
     
 
@@ -287,7 +278,7 @@ def ActualizarUsuario(id):
             cursor = mysql.connection.cursor()
             cursor.execute('UPDATE usuarios set Nombre=%s , Apellido_paterno=%s , Apellido_materno=%s , Numero_Telefono=%s , Email=%s, Contraseña=%s where ID_usuario=%s', (Enombre,Eapellido_p ,Eapellido_m,Enumerot,Ecorreo,Econtrasena, id))
             mysql.connection.commit()
-            flash('Usuario editado correctamente')
+            flash('Usuario editado correctamente', 'success')
             return redirect(url_for('verUsuarios'))
         
         except Exception as e:
@@ -305,7 +296,7 @@ def ActualizarEjercicio(id):
             cursor = mysql.connection.cursor()
             cursor.execute('UPDATE ejercicios set Nombre=%s , Grupo_muscular=%s , Tipo_ejercicio=%s where ID_ejercicio=%s', (Enombre,Emusculo,Etipo, id))
             mysql.connection.commit()
-            flash('Ejercicio editado correctamente')
+            flash('Ejercicio editado correctamente', 'success')
             return redirect(url_for('verEjercicios'))
         
         except Exception as e:

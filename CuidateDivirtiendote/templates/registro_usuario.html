@@ -1,6 +1,33 @@
 {% extends "plantilla.html" %}
 {% block body %}
 
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+
+
+<script>
+                              
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      Toast.fire({
+        icon: "success",
+        title: "guardado correctamente"
+      });
+      </script>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
     <div class="container mt-5">
         <h2 class="text-center">Formulario de Registro</h2>
         <form action="/GuardarUsuario" method="post">

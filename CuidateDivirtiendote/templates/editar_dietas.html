@@ -19,7 +19,7 @@
                                 <label for="dietDescription">Descripción</label>
                                 <textarea class="form-control" id="dietDescription" name="dietDescription" rows="3" required>{{dieta.2}}</textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block">Editar Dieta</button>
+                            <button type="submit" class="btn btn-primary btn-block" onclick="actualizar()">Editar Dieta</button>
                         </form>
                     </div>
                 </div>
@@ -27,5 +27,9 @@
         </div>
     </div>
 
-
+    <script>
+        function actualizar() {
+            return confirm("¿Desea guardar los cambios?");
+        }
+    </script>
 {% endblock %}

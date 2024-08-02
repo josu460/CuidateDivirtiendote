@@ -23,7 +23,7 @@
                                 <label for="ejertipo">Tipo de Ejercicio</label>
                                 <textarea class="form-control" id="ejertipo" name="ejertipo" rows=3  required>{{ejercicio.3}}</textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block">Editar Dieta</button>
+                            <button type="submit" class="btn btn-primary btn-block" onclick="actualizar()">Editar Dieta</button>
                         </form>
                     </div>
                 </div>
@@ -32,4 +32,9 @@
     </div>
 
 
+    <script>
+        function actualizar() {
+            return confirm("¿Desea guardar los cambios?");
+        }
+    </script>
 {% endblock %}

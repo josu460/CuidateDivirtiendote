@@ -1,6 +1,24 @@
 {% extends "plantilla.html" %}
 {% block body %}
 
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+
+
+<script>
+Swal.fire({
+    title: "{{ 'Correcto' if category == 'success' else 'Info' if category == 'info' else 'Error' }}",
+    icon: "{{ 'success' if category == 'success' else 'info' if category == 'info' else 'error' }}",
+    text: "{{ message }}",
+    showConfirmButton: false,
+    timer: 1500
+  });
+  </script>
+
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-10">
@@ -52,5 +70,7 @@
             return confirm("¿Desea eliminar el usuario?");
         }
     </script>
+
+
 
  {% endblock %}

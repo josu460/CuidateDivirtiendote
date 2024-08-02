@@ -9,28 +9,26 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/sesion.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
+
+
     <div class="login-container">
+
         <div id="carouselExampleCaptions" class="carousel slide carousel-fade">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="https://cdn.pixabay.com/photo/2016/02/15/23/14/fruit-1202313_1280.jpg" class="d-block w-100" alt="Imagen 1">
-                    <div class="carousel-caption d-none d-md-block">
-
-                    </div>
+                    <div class="carousel-caption d-none d-md-block"></div>
                 </div>
                 <div class="carousel-item">
                     <img src="https://cdn.pixabay.com/photo/2014/11/05/15/57/salmon-518032_1280.jpg" class="d-block w-100" alt="Imagen 2">
-                    <div class="carousel-caption d-none d-md-block">
-
-                    </div>
+                    <div class="carousel-caption d-none d-md-block"></div>
                 </div>
                 <div class="carousel-item">
                     <img src="https://cdn.pixabay.com/photo/2014/11/05/15/57/salmon-518032_1280.jpg" class="d-block w-100" alt="Imagen 3">
-                    <div class="carousel-caption d-none d-md-block">
-
-                    </div>
+                    <div class="carousel-caption d-none d-md-block"></div>
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
@@ -42,14 +40,24 @@
                 <span class="sr-only">Siguiente</span>
             </a>
         </div>
-
-        <div class="row form-content" >
+        <div class="row form-content">
             <div class="col-md-8 form-wrapper">
                 <div class="welcome-message">
                     <h1>¡Bienvenido de nuevo! &#x1F44F;</h1>
                     <p>¡Por favor, ingresa tus datos!</p>
                 </div>
                 <form class="login-form" action="/login" method="POST">
+                    <div class=" alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>
+                            {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                            {% for message in messages %}
+                            <h1>{{ message }}</h1>
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                        </strong>
+                    </div>
                     <div class="divider">
                         <div class="divider-line"></div>
                         <div class="divider-line"></div>
@@ -74,12 +82,12 @@
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
                     <div class="form-actions">
-                        <div class="form-row">
+                        <!-- <div class="form-row">
                             <span>¿Olvidaste tu contraseña?</span>
                             <a href="#" title="Restablecer Contraseña">Restablecer Contraseña</a>
-                        </div>
+                        </div> -->
                         <div class="signup-link">
-                            <a href="#" title="Crear Cuenta">Crear Cuenta</a>
+                            <a href="/registro" title="Crear Cuenta">Crear Cuenta</a>
                         </div>
                     </div>
                 </form>

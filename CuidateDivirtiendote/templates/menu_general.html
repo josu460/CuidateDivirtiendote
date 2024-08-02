@@ -30,7 +30,7 @@
                 </ul>
                 <div class="header-buttons text-right">
                     <button class="btn btn-outline-light" onclick="abrirIniciarSesion()">Iniciar Sesión</button>
-                    <button id="crear-cuenta" class="btn btn-outline-light">Crear Cuenta</button>
+                    <button id="crear-cuenta" class="btn btn-outline-light" onclick="crearcuenta()" >Crear Cuenta</button>
                 </div>
             </div>
         </div>
@@ -155,6 +155,10 @@
 
         function abrirIniciarSesion() {
             window.location.href = "/login";
+        }
+
+        function crearcuenta(){
+            window.location.href = "/registro";
         }
     </script>
 </body>

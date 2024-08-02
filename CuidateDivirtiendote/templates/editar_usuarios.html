@@ -40,10 +40,15 @@
             </div>
 
             <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-outline-info mb-5">Editar Usuario</button>
+            <button type="submit" class="btn btn-outline-info mb-5" onclick="actualizar()">Editar Usuario</button>
             </div>
         </form>
     </div>
 
+    <script>
+        function actualizar() {
+            return confirm("¿Desea guardar los cambios?");
+        }
+    </script>
 
 {% endblock %}
