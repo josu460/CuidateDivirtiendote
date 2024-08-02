@@ -1,8 +1,7 @@
 from flask import Flask, request,jsonify, render_template, url_for, redirect, flash
 from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash
-
-
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 #modelos 
 from models.ModelUser import ModelUser
 
@@ -18,6 +17,11 @@ app.config['MYSQL_DB'] = 'cuidatedivirtiendote'
 app.secret_key = 'my_secret'
 
 mysql = MySQL(app)
+login_manager_app = LoginManager(app)
+
+@login_manager_app.user_loader
+def load_user(ID_usario):
+    return ModelUser.get_by_id(mysql, ID_usario)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -32,6 +36,7 @@ def login():
         
         if logged_user is not None:
             if logged_user.is_authenticated(logged_user.Contraseña, password):
+                login_user(logged_user)
                 return redirect(url_for('menuAdmin'))
             else:
                 flash('Contraseña incorrecta', 'danger')
@@ -69,6 +74,7 @@ def registrox():
     return render_template('resgistrox.html')
 
 @app.route('/menuAdmin')
+@login_required
 def menuAdmin():
     return render_template('index.html')
 
