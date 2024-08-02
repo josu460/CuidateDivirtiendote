@@ -37,7 +37,10 @@ def login():
         if logged_user is not None:
             if logged_user.is_authenticated(logged_user.Contraseña, password):
                 login_user(logged_user)
-                return redirect(url_for('menuAdmin'))
+                if logged_user.Rol == 'admin':
+                    return redirect(url_for('menuAdmin'))
+                else:
+                    return redirect(url_for('menuUsuario'))
             else:
                 flash('Contraseña incorrecta', 'danger')
                 return redirect(url_for('login'))
@@ -72,7 +75,10 @@ def pruebaConexion():
         return jsonify({'status': 'Error de conexion', 'mensaje': str(ex)})
 
 
-
+@app.route('/menuUsuario')
+@login_required
+def menuUsuario():
+    return render_template('menu_Usuarios.html')
 
 @app.route('/')
 def index():
@@ -88,32 +94,39 @@ def menuAdmin():
     return render_template('index.html')
 
 @app.route('/blog')
+@login_required
 def blog():
     return render_template('blog.html')
 
 
 
 @app.route('/ayuda')
+@login_required
 def ayuda():
     return render_template('Ayuda.html')
 
 @app.route('/plantilla')
+@login_required
 def plantilla():
     return render_template('plantilla.html')
 
 @app.route('/registro')
+@login_required
 def registro():
     return render_template('registro_usuario.html')
 
 @app.route('/dietasR')
+@login_required
 def dietasR():
     return render_template('dietasR.html')
 
 @app.route('/ejercicioR')
+@login_required
 def ejercicioR():
     return render_template('ejerciciosR.html')
 
 @app.route('/verDietas')
+@login_required
 def verDietas():
     try:
         cursor = mysql.connection.cursor()
@@ -127,6 +140,7 @@ def verDietas():
 
 
 @app.route('/verEjercicios')
+@login_required
 def verEjercicios():
     try:
         cursor = mysql.connection.cursor()
@@ -209,6 +223,7 @@ def editarE(id):
     return render_template('editar_ejercicios.html', ejercicio= ejercicioE)
 
 @app.route('/ActualizarDieta/<id>', methods=['POST'])
+@login_required
 def ActualizarDieta(id):
     if request.method == 'POST':
         try:
@@ -227,6 +242,7 @@ def ActualizarDieta(id):
             return redirect(url_for('verDietas'))
 
 @app.route('/verUsuarios')
+@login_required
 def verUsuarios():
     try:
         cursor = mysql.connection.cursor()
@@ -248,13 +264,14 @@ def guardarUsuario():
             Fnumerot = request.form['txtnumero_telefono']
             Fcorreo = request.form['txtemail']
             Fcontrasena = request.form['txtcontrasena']
+            Frole = request.form['txtrole']
 
             # Hash de la contraseña
             hashed_password = generate_password_hash(Fcontrasena)
             
             cursor = mysql.connection.cursor()
-            cursor.execute('INSERT INTO usuarios(Nombre, Apellido_paterno, Apellido_materno, Numero_Telefono, Email, Contraseña) VALUES (%s, %s, %s, %s, %s, %s)', 
-                           (Fnombre, Fapellido_p, Fapellido_m, Fnumerot, Fcorreo, hashed_password))
+            cursor.execute('INSERT INTO usuarios(Nombre, Apellido_paterno, Apellido_materno, Numero_Telefono, Email, Contraseña,Rol) VALUES (%s, %s, %s, %s, %s, %s, %s)', 
+                           (Fnombre, Fapellido_p, Fapellido_m, Fnumerot, Fcorreo, hashed_password, Frole))
             mysql.connection.commit()
             flash('Usuario agregado correctamente', 'success')
             return redirect(url_for('login'))
@@ -285,6 +302,7 @@ def editar(id):
     return render_template('editar_usuarios.html', usuario= usuarioE)
 
 @app.route('/ActualizarUsuario/<id>', methods=['POST'])
+@login_required
 def ActualizarUsuario(id):
     if request.method == 'POST':
         try:
@@ -294,9 +312,10 @@ def ActualizarUsuario(id):
             Enumerot = request.form['txtnumero_telefono']
             Ecorreo = request.form['txtemail']
             Econtrasena = request.form['txtcontrasena']
+            Erole = request.form['txtrole']
             # Enviamos a la BD
             cursor = mysql.connection.cursor()
-            cursor.execute('UPDATE usuarios set Nombre=%s , Apellido_paterno=%s , Apellido_materno=%s , Numero_Telefono=%s , Email=%s, Contraseña=%s where ID_usuario=%s', (Enombre,Eapellido_p ,Eapellido_m,Enumerot,Ecorreo,Econtrasena, id))
+            cursor.execute('UPDATE usuarios set Nombre=%s , Apellido_paterno=%s , Apellido_materno=%s , Numero_Telefono=%s , Email=%s, Contraseña=%s, Rol=%s where ID_usuario=%s', (Enombre,Eapellido_p ,Eapellido_m,Enumerot,Ecorreo,Econtrasena,Erole, id))
             mysql.connection.commit()
             flash('Usuario editado correctamente', 'success')
             return redirect(url_for('verUsuarios'))
@@ -306,6 +325,7 @@ def ActualizarUsuario(id):
             return redirect(url_for('verUsuarios'))
 
 @app.route('/ActualizarEjercicio/<id>', methods=['POST'])
+@login_required
 def ActualizarEjercicio(id):
     if request.method == 'POST':
         try:
