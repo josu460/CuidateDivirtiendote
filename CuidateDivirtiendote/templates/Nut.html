@@ -1,27 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nutriólogo</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/nut.css') }}">
+{% extends "plantillauser.html" %}
+{% block body %}
+
 </head>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/nut.css') }}">
 <body>
-    <div class="menu-bar">
-        <ul class="navigation">
-            <li><a href="vista.html">Regresar</a></li>
-        </ul>
-        <div class="header-buttons text-right">
-            <button class="btn btn-outline-light">Cerrar Sesión</button>
-        </div>
-    </div>
 
     <section id="about" class="section">
         <div class="container">
             <div class="row shadowed-section">
                 <div class="col-md-4 text-center">
-                    <img src="IMG/DALL·E 2024-07-30 14.48.47 - A realistic image showing a serious nutritionist in a professional setting, sitting at a table filled with fresh vegetables, fruits, and grains. The n.webp" alt="Perfil" class="img-fluid rounded-circle">
+                    <img src="{{ url_for('static', filename='IMG/Nutriologo.webp') }}" alt="Perfil" class="img-fluid rounded-circle">
                 </div>
                 <div class="col-md-8">
                     <h2>Arturo</h2>
@@ -37,7 +25,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="IMG/DALL·E 2024-07-30 09.49.51 - A realistic image showing a nutritionist's table with fresh vegetables, fruits, grains, and a balanced meal plan on a clipboard.webp" alt="Planes de Alimentación Personalizados">
+                        <img src="{{ url_for('static', filename='IMG/Plan-Alimentacion.webp') }}" alt="Planes de Alimentación Personalizados">
                         <div class="card-body">
                             <h5 class="card-title">Planes de Alimentación</h5>
                             <p class="card-text">Dietas equilibradas y personalizadas para mejorar tu salud y rendimiento.</p>
@@ -47,7 +35,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="IMG/DALL·E 2024-07-30 09.46.11 - A realistic image for 'Pérdida de Peso' showing a person standing on a scale, with healthy foods like fruits, vegetables, and a water bottle nearby.webp" alt="Pérdida de Peso">
+                        <img src="{{ url_for('static', filename='IMG/Dieta.webp') }}" alt="Pérdida de Peso">
                         <div class="card-body">
                             <h5 class="card-title">Dieta</h5>
                             <p class="card-text">Programas de nutrición diseñados para ayudarte a perder peso de manera saludable.</p>
@@ -89,9 +77,6 @@
             </form>
         </div>
     </section>
+
     
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.googleapis.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+    {% endblock %}

@@ -19,10 +19,15 @@
     z-index: 1;
 }
 
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 .menu-wrapper {
     display: flex;
-    position: relative;
-    flex-direction: row;
+    flex-direction: column;
     z-index: 2;
 }
 
@@ -176,6 +181,7 @@
 
 .container {
     padding-top: 5rem;
+    padding-bottom: 3rem; /* Ajusta este valor según la altura de tu pie de página */
 }
 
 .shadowed-section {
@@ -318,4 +324,24 @@
 .meal-details p {
     margin: 0.5rem 0;
     text-align: left;
+}
+
+/* Additional CSS for footer adjustment */
+.footer {
+    background-color: #4caf50 !important;
+    margin-top: auto;
+    padding: 30px 0;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #f8f9fa; /* Asegúrate de que el color coincida con tu diseño */
+    padding: 10px 0;
+    text-align: center;
+    box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1); /* Añade una sombra suave si lo deseas */
+}
+
+.navbar-title {
+    margin-left: 50%;
+    color: white;
 }

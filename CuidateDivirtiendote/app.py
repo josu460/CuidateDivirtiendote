@@ -40,7 +40,7 @@ def login():
                 if logged_user.Rol == 'admin':
                     return redirect(url_for('menuAdmin'))
                 else:
-                    return redirect(url_for('menuUsuario'))
+                    return redirect(url_for('vista'))
             else:
                 flash('Contraseña incorrecta', 'danger')
                 return redirect(url_for('login'))
@@ -357,10 +357,40 @@ def ActualizarEjercicio(id):
 # Rutas para los usuarios premium 
 
 @app.route('/vista')
+@login_required
 def vista():
     return render_template('vista.html')
 
 
+@app.route('/alimentacionPersonalizada')
+@login_required
+def alimentacionPersonalizada():
+    return render_template('PlanA.html')    
+
+@app.route('/objetivo')
+@login_required
+def objetivo():
+    return render_template('objetivo.html')
+
+@app.route('/nutriologo')
+@login_required
+def nutriologo():
+    return render_template('Nut.html')
+
+@app.route('/entrenador')
+@login_required
+def entrenador():
+    return render_template('EP.html')
+
+@app.route('/DietasUsuarioP')
+@login_required
+def DietasUsuarioP():
+    return render_template('dieta.html')
+
+@app.route('/EjerciciosUsuarioP')
+@login_required
+def EjerciciosUsuarioP():
+    return render_template('Ejp.html')
 
 if __name__ == '__main__':
     app.run(port=3000, debug=True)

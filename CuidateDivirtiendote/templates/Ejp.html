@@ -1,28 +1,14 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicios Personalizados - Pablo Ortiz</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/epj.css') }}">
-</head>
-<body>
-    <div class="menu-bar">
-        <ul class="navigation">
-            <li><a href="EP.html">Regresar</a></li>
-        </ul>
-        <div class="header-buttons text-right">
-            <button class="btn btn-outline-light">Cerrar Sesión</button>
-        </div>
-    </div>
-    
+{% extends "plantillauser.html" %}
+
+{% block body %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ejp.css') }}">
+   
     <section id="exercise-plans" class="section bg-light">
         <div class="container">
             <h2>Ejercicios Personalizados</h2>
             <div class="exercise-list">
                 <div class="flashcard" onclick="toggleDescription('desc1')">
-                    <img src="IMG/DALL·E 2024-07-30 19.06.57 - A high-quality image of a person performing a squat exercise in a gym setting. The person is standing with their feet shoulder-width apart, knees bent.webp" alt="Sentadillas" class="flashcard-image">
+                    <img src="{{ url_for('static', filename='IMG/sentadillas.webp') }}" alt="Sentadillas" class="flashcard-image">
                     <div class="flashcard-text">Sentadillas</div>
                     <div id="desc1" class="exercise-description">
                         <h5>Sentadillas</h5>
@@ -31,7 +17,7 @@
                     </div>
                 </div>
                 <div class="flashcard" onclick="toggleDescription('desc2')">
-                    <img src="IMG/DALL·E 2024-07-30 19.07.00 - A high-quality image of a person performing a push-up exercise in a gym setting. The person is in a plank position with arms extended, body straight, .webp" alt="Flexiones de pecho" class="flashcard-image">
+                    <img src="{{ url_for('static', filename='IMG/Flexionespecho.webp') }}" alt="Flexiones de pecho" class="flashcard-image">
                     <div class="flashcard-text">Flexiones de pecho</div>
                     <div id="desc2" class="exercise-description">
                         <h5>Flexiones de pecho</h5>
@@ -40,7 +26,7 @@
                     </div>
                 </div>
                 <div class="flashcard" onclick="toggleDescription('desc3')">
-                    <img src="IMG/DALL·E 2024-07-30 19.07.02 - A high-quality image of a person performing a deadlift exercise in a gym setting. The person is lifting a barbell from the ground with their back stra.webp" alt="Peso muerto" class="flashcard-image">
+                    <img src="{{ url_for('static', filename='IMG/Pesomuerto.webp') }}" alt="Peso muerto" class="flashcard-image">
                     <div class="flashcard-text">Peso muerto</div>
                     <div id="desc3" class="exercise-description">
                         <h5>Peso muerto</h5>
@@ -49,7 +35,7 @@
                     </div>
                 </div>
                 <div class="flashcard" onclick="toggleDescription('desc4')">
-                    <img src="IMG/DALL·E 2024-07-30 19.07.04 - A high-quality image of a person performing a bench press exercise in a gym setting. The person is lying on a bench with their feet on the ground, lif.webp" alt="Press de banca" class="flashcard-image">
+                    <img src="{{ url_for('static', filename='IMG/Pesobanca.webp') }}" alt="Press de banca" class="flashcard-image">
                     <div class="flashcard-text">Press de banca</div>
                     <div id="desc4" class="exercise-description">
                         <h5>Press de banca</h5>
@@ -58,7 +44,7 @@
                     </div>
                 </div>
                 <div class="flashcard" onclick="toggleDescription('desc5')">
-                    <img src="IMG/DALL·E 2024-07-30 19.07.07 - A high-quality image of a person performing a pull-up exercise in a gym setting. The person is gripping a pull-up bar, pulling themselves up with thei.webp" alt="Dominadas" class="flashcard-image">
+                    <img src="{{ url_for('static', filename='IMG/dominadas.webp') }}" alt="Dominadas" class="flashcard-image">
                     <div class="flashcard-text">Dominadas</div>
                     <div id="desc5" class="exercise-description">
                         <h5>Dominadas</h5>
@@ -67,7 +53,7 @@
                     </div>
                 </div>
                 <div class="flashcard" onclick="toggleDescription('desc6')">
-                    <img src="IMG/DALL·E 2024-07-30 19.07.09 - A high-quality image of a person performing lunges in a gym setting. The person is stepping forward with one leg, bending both knees to lower the body.webp" alt="Zancadas" class="flashcard-image">
+                    <img src="{{ url_for('static', filename='IMG/Zancadas.webp') }}" alt="Zancadas" class="flashcard-image">
                     <div class="flashcard-text">Zancadas</div>
                     <div id="desc6" class="exercise-description">
                         <h5>Zancadas</h5>
@@ -76,7 +62,7 @@
                     </div>
                 </div>
                 <div class="flashcard" onclick="toggleDescription('desc7')">
-                    <img src="IMG/DALL·E 2024-07-30 19.07.12 - A high-quality image of a person performing a dumbbell row in a gym setting. The person is bent over with one knee on a bench, holding a dumbbell in o.webp" alt="Remo con mancuernas" class="flashcard-image">
+                    <img src="{{ url_for('static', filename='IMG/Remomancuernas.webp') }}" alt="Remo con mancuernas" class="flashcard-image">
                     <div class="flashcard-text">Remo con mancuernas</div>
                     <div id="desc7" class="exercise-description">
                         <h5>Remo con mancuernas</h5>
@@ -85,7 +71,7 @@
                     </div>
                 </div>
                 <div class="flashcard" onclick="toggleDescription('desc8')">
-                    <img src="IMG/DALL·E 2024-07-30 19.07.14 - A high-quality image of a person performing a plank exercise in a gym setting. The person is in a plank position with elbows on the ground, body strai.webp" alt="Plancha" class="flashcard-image">
+                    <img src="{{ url_for('static', filename='IMG/Plancha.webp') }}" alt="Plancha" class="flashcard-image">
                     <div class="flashcard-text">Plancha</div>
                     <div id="desc8" class="exercise-description">
                         <h5>Plancha</h5>
@@ -94,7 +80,7 @@
                     </div>
                 </div>
                 <div class="flashcard" onclick="toggleDescription('desc9')">
-                    <img src="IMG/DALL·E 2024-07-30 19.07.17 - A high-quality image of a person performing a military press exercise in a gym setting. The person is standing with feet shoulder-width apart, lifting.webp" alt="Press militar" class="flashcard-image">
+                    <img src="{{ url_for('static', filename='IMG/Pressmilitar.webp') }}" alt="Press militar" class="flashcard-image">
                     <div class="flashcard-text">Press militar</div>
                     <div id="desc9" class="exercise-description">
                         <h5>Press militar</h5>
@@ -103,7 +89,7 @@
                     </div>
                 </div>
                 <div class="flashcard" onclick="toggleDescription('desc10')">
-                    <img src="IMG/DALL·E 2024-07-30 19.07.19 - A high-quality image of a person performing lateral raises in a gym setting. The person is standing with feet shoulder-width apart, lifting dumbbells .webp" alt="Elevaciones laterales" class="flashcard-image">
+                    <img src="{{ url_for('static', filename='IMG/Elevacioneslaterales.webp') }}" alt="Elevaciones laterales" class="flashcard-image">
                     <div class="flashcard-text">Elevaciones laterales</div>
                     <div id="desc10" class="exercise-description">
                         <h5>Elevaciones laterales</h5>
@@ -112,7 +98,7 @@
                     </div>
                 </div>
                 <div class="flashcard" onclick="toggleDescription('desc11')">
-                    <img src="IMG/DALL·E 2024-07-30 19.07.22 - A high-quality image of a person performing a bicep curl exercise in a gym setting. The person is standing with feet shoulder-width apart, holding dum.webp" alt="Curl de bíceps" class="flashcard-image">
+                    <img src="{{ url_for('static', filename='IMG/Curlbiceps.webp') }}" alt="Curl de bíceps" class="flashcard-image">
                     <div class="flashcard-text">Curl de bíceps</div>
                     <div id="desc11" class="exercise-description">
                         <h5>Curl de bíceps</h5>
@@ -121,7 +107,7 @@
                     </div>
                 </div>
                 <div class="flashcard" onclick="toggleDescription('desc12')">
-                    <img src="IMG/DALL·E 2024-07-30 19.07.23 - A high-quality image of a person performing tricep extensions in a gym setting. The person is standing with feet shoulder-width apart, holding a dumbb.webp" alt="Extensiones de tríceps" class="flashcard-image">
+                    <img src="{{ url_for('static', filename='IMG/Extensionestriceps.webp') }}" alt="Extensiones de tríceps" class="flashcard-image">
                     <div class="flashcard-text">Extensiones de tríceps</div>
                     <div id="desc12" class="exercise-description">
                         <h5>Extensiones de tríceps</h5>
@@ -130,7 +116,7 @@
                     </div>
                 </div>
                 <div class="flashcard" onclick="toggleDescription('desc13')">
-                    <img src="IMG/DALL·E 2024-07-30 19.07.26 - A high-quality image of a person performing bicycle crunches in a gym setting. The person is lying on an exercise mat, with hands behind their head, a.webp" alt="Abdominales en bicicleta" class="flashcard-image">
+                    <img src="{{ url_for('static', filename='IMG/Abdominalesbicicleta.webp') }}" alt="Abdominales en bicicleta" class="flashcard-image">
                     <div class="flashcard-text">Abdominales en bicicleta</div>
                     <div id="desc13" class="exercise-description">
                         <h5>Abdominales en bicicleta</h5>
@@ -139,7 +125,7 @@
                     </div>
                 </div>
                 <div class="flashcard" onclick="toggleDescription('desc14')">
-                    <img src="IMG/DALL·E 2024-07-30 19.07.28 - A high-quality image of a person performing calf raises in a gym setting. The person is standing with feet shoulder-width apart, lifting their heels o.webp" alt="Elevaciones de talones" class="flashcard-image">
+                    <img src="{{ url_for('static', filename='IMG/Elevacionestalones.webp') }}" alt="Elevaciones de talones" class="flashcard-image">
                     <div class="flashcard-text">Elevaciones de talones</div>
                     <div id="desc14" class="exercise-description">
                         <h5>Elevaciones de talones</h5>
@@ -148,7 +134,7 @@
                     </div>
                 </div>
                 <div class="flashcard" onclick="toggleDescription('desc15')">
-                    <img src="IMG/DALL·E 2024-07-30 19.22.58 - A high-quality image of a person performing cardio on a treadmill in a gym setting. The person is running on the treadmill, wearing workout clothes. T.webp" alt="Cardio" class="flashcard-image">
+                    <img src="{{ url_for('static', filename='IMG/Cardio.webp') }}" alt="Cardio" class="flashcard-image">
                     <div class="flashcard-text">Cardio</div>
                     <div id="desc15" class="exercise-description">
                         <h5>Cardio</h5>
@@ -157,7 +143,7 @@
                     </div>
                 </div>
                 <div class="flashcard" onclick="toggleDescription('desc16')">
-                    <img src="IMG/DALL·E 2024-07-30 19.23.00 - A high-quality image of a person performing burpees in a gym setting. The person is in mid-air, jumping up from a squat position with arms extended ov.webp" alt="Burpees" class="flashcard-image">
+                    <img src="{{ url_for('static', filename='IMG/Burpees.webp') }}" alt="Burpees" class="flashcard-image">
                     <div class="flashcard-text">Burpees</div>
                     <div id="desc16" class="exercise-description">
                         <h5>Burpees</h5>
@@ -229,18 +215,24 @@
     </section>
 
     <script>
-        function toggleDescription(id) {
-            var element = document.getElementById(id);
-            if (element.style.display === "none" || element.style.display === "") {
-                element.style.display = "block";
-            } else {
-                element.style.display = "none";
-            }
-        }
-    </script>
+// Asegúrate de que este mensaje se vea en la consola
+console.log("Archivo JavaScript cargado.");
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+function toggleDescription(id) {
+    console.log("toggleDescription llamado con id:", id);
+    var description = document.getElementById(id);
+    if (description) {
+        // Comprobamos si el elemento tiene la clase 'show'
+        if (description.classList.contains('show')) {
+            // Si la clase 'show' está presente, la removemos
+            description.classList.remove('show');
+        } else {
+            // Si la clase 'show' no está presente, la agregamos
+            description.classList.add('show');
+        }
+    } else {
+        console.error("No se encontró el elemento con id:", id);
+    }
+}
+    </script>
+{% endblock %}

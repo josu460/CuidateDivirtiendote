@@ -38,6 +38,8 @@
     background-color: var(--background);
     height: 3.75rem;
     opacity: 0.9;
+    top: 0;
+    z-index: 1000;
 }
 
 .menu-icon {
@@ -80,7 +82,7 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: all 0.2s ease-in-out;
-    margin-left: 1cm; /* Mueve el enlace 1 cm a la derecha */
+    margin-left: 1cm;
 }
 
 .navigation > li > a:before {
@@ -139,7 +141,6 @@
             width: 0;
             height: 0;
         }
-
         100% {
             opacity: 1;
             width: 100%;
@@ -157,7 +158,6 @@
             width: 100%;
             height: calc(100vh - var(--navbar-height));
         }
-
         100% {
             opacity: 0;
             width: 0;
@@ -285,14 +285,14 @@
 
 .exercise-description {
     display: none;
-    margin-top: 1rem;
-    font-size: 1rem;
-    color: #333;
-    background-color: #FAF6ED;
-    padding: 1rem;
-    border-radius: 0.5rem;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
 }
 
+.show {
+    display: block;
+}
 .weekly-routine {
     margin-top: 2rem;
     padding: 2rem;

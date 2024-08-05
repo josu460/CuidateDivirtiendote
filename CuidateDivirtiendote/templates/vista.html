@@ -1,27 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil de Usuario</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/vistap.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/plana.css') }}">
-</head>
-<body>
-
-    <!-- Navegacion -->
-    <div class="menu-bar">
-        <ul class="navigation">
-            <li><a href="#perfil" title="Perfil">Perfil</a></li>
-            <li><a href="EP.html">Entrenador Personal</a></li>
-            <li><a href="Nut.html">Nutriologo</a></li>
-        </ul>
-        <div class="header-buttons text-right">
-            <button id="crear-cuenta" class="btn btn-outline-light">Cerrar Sesión</button>
-        </div>
-    </div>
-
+{% extends "plantillauser.html" %}
+{% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/vistap.css') }}">
     <!-- Perfil -->
     <div class="container my-4" id="perfil">
         <img src="{{ url_for('static', filename='IMG/pablo.webp') }}" alt="Perfil" class="profile-image">
@@ -37,13 +16,6 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        function abrirIniciarSesion() {
-            window.location.href = "sesion.html";
-        }
-    </script>
-</body>
-</html>
+
+
+{% endblock %}

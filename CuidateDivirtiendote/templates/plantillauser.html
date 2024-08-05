@@ -7,12 +7,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/plantilla.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/vistap.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/vistap.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/objetivo.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/nut.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/ep.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/epj.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/dieta.css') }}">  
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dieta.css') }}"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/plana.css') }}"> -->
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -38,43 +39,28 @@
     {%endfor%}
     {%endif%}
     {%endwith%}
-    <nav class="navbar navbar-expand-lg bg-body-tertiary ">
-        <a class="navbar-brand" href="#">
-            <img src="{{ url_for('static', filename='IMG/cuerda.jpg') }}" alt="Logo" width="30" height="24"
-                class="d-inline-block align-text-top">
-            Cuidate-Divirtiendote!!
-        </a>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/menuAdmin">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/verUsuarios">Usuarios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/verEjercicios">Ejercicios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/verDietas">Dietas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ url_for('logout')}}">Cerrar sesión</a>
-                </li>
+    <div class="menu-bar">
+        <ul class="navigation">
+            <li><a href="/vista" title="Perfil">Perfil</a></li>
+            <li><a href="/entrenador">Entrenador Personal</a></li>
+            <li><a href="/nutriologo">Nutriologo</a></li>
+            <li><a href="/objetivo">Objetivos</a></li>
+            <li><a href="/alimentacionPersonalizada">Alimentación personalizada</a></li>
+            <li><a href="/EjerciciosUsuarioP">Ejercicios personalizados</a></li>
+            <li><a href="/DietasUsuarioP">Dieta</a></li>
+            <li><a href="{{ url_for('logout')}}">Cerrar Sesión</a></li>
+            <h3 class="nombre-usuarioP">Bienvenid@, {{current_user.Nombre}}</h3>
+        </ul>
+    
+    </div>
+    
 
-            </ul>
+        {% block body %}
+        {% endblock %}
 
-            <h3 class="navbar-title">Bienvenid@, {{current_user.Nombre}}</h3>
-        </div>
-        </div>
-    </nav>
 
-    {%block body%}
-
-    {%endblock%}
-
-    <footer class=" footer bg-light text-center text-lg-start">
+    <footer class="footer bg-light text-center text-lg-start">
         <div class="container p-4">
             <div class="row">
                 <div class="col-lg-12 text-center">

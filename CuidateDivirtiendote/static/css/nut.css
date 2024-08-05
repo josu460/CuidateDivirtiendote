@@ -38,6 +38,9 @@
     background-color: var(--background);
     height: 3.75rem;
     opacity: 0.9;
+    top:0;
+    z-index: 1000;
+    
 }
 
 .menu-icon {
