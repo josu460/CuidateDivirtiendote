@@ -392,6 +392,20 @@ def DietasUsuarioP():
 def EjerciciosUsuarioP():
     return render_template('Ejp.html')
 
+
+#Rutas para los usuarios gratuitos
+@app.route('/planes')
+def planes():
+    return render_template('Planes.html')
+
+@app.route('/formulario')
+def formulario():
+    return render_template('Formulario.html')
+
+@app.route('/principalgratis')
+def principalgratis():
+    return render_template('principal.html')
+
 if __name__ == '__main__':
     app.run(port=3000, debug=True)
     

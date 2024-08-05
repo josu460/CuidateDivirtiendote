@@ -1,0 +1,74 @@
+{%extends "plantillausergratis.html"%}
+{% block body %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/planes.css') }}">
+<body>
+
+        <!--Contenido Principal-->
+        <div class="container text-center my-4">
+            <h2>Elige tu Plan</h2>
+            <div class="pricing-container">
+                <article class="pricing-card">
+                    <div class="pricing-card__banner">
+                        Plan Básico
+                    </div>
+                    <h3>Plan Básico Gratis</h3>
+                    <div class="pricing-card__price--original">
+                        Gratuito
+                    </div>
+                    <div class="pricing-card__price">
+                        Incluye
+                    </div>
+                    <ul>
+                        <li>Acceso a la creación de un plan alimenticio.</li>
+                        <li>Plan de ejercicios automático.</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="seleccionarPlanB()">Seleccionar</button>
+                </article>
+                <article class="pricing-card pricing-card--primary">
+                    <div class="pricing-card__banner">
+                        Más Popular
+                    </div>
+                    <h3>Plan Premium</h3>
+                    <div class="pricing-card__price--original">
+                        $149.99
+                    </div>
+                    <div class="pricing-card__price">
+                        Incluye
+                    </div>
+                    <ul>
+                        <li>Todo lo del Plan Básico.</li>
+                        <li>Formador personal.</li>
+                        <li>Nutriologo especializado.</li>
+                        <li>Experto en ejercicios.</li>
+                        <li>Planes alimenticios y de ejercicios personalizados.</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="seleccionarPlanP()">Seleccionar</button>
+                </article>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+
+        function seleccionarPlanB(){
+            window.location.href = "Formulario.html";
+        }
+        function abrirIniciarSesion() {
+            window.location.href = "sesion.html";
+        }
+
+        function AbrirCuneta(){
+            window.location.href = "Crearcuenta.html";
+        }
+
+        function seleccionarPlan(plan) {
+            alert("Has seleccionado el plan " + plan);
+            
+        }
+    </script>
+
+{% endblock %}
