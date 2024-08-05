@@ -39,8 +39,10 @@ def login():
                 login_user(logged_user)
                 if logged_user.Rol == 'admin':
                     return redirect(url_for('menuAdmin'))
-                else:
+                elif logged_user.Rol == 'userp':
                     return redirect(url_for('vista'))
+                else:
+                    return redirect(url_for('principalgratis'))
             else:
                 flash('Contraseña incorrecta', 'danger')
                 return redirect(url_for('login'))
