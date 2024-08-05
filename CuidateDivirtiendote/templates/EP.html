@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrenador Personal</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ep.css') }}">
+</head>
+<body>
+    <div class="menu-bar">
+        <ul class="navigation">
+            <li><a href="vista.html">Regresar</a></li>
+            
+        </ul>
+        <div class="header-buttons text-right">
+            <button class="btn btn-outline-light">Cerrar Sesión</button>
+        </div>
+    </div>
+
+    <section id="about" class="section">
+        <div class="container">
+            <div class="row shadowed-section">
+                <div class="col-md-4 text-center">
+                    <img src="IMG/DALL·E 2024-07-30 14.28.45 - A realistic image of a light-skinned personal trainer in a gym setting. The trainer is standing with his arms crossed, wearing a black athletic shirt,.webp" alt="Perfil" class="img-fluid rounded-circle">
+                </div>
+                <div class="col-md-8">
+                    <h2>Eduardo</h2>
+                    <p>Soy entrenador personal certificado con más de 10 años de experiencia en ayudar a personas a alcanzar sus objetivos de fitness. Mi enfoque está en crear planes de entrenamiento personalizados que se adapten a tus necesidades y metas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="services" class="section bg-light">
+        <div class="container">
+            <h2>Servicios</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="IMG/DALL·E 2024-07-30 10.06.21 - A realistic image showing personalized exercise training with a trainer guiding a person through exercises in a gym setting. The trainer is demonstrat.webp" alt="Entrenamientos Personalizados">
+                        <div class="card-body">
+                            <h5 class="card-title">Entrenamientos Personalizados</h5>
+                            <p class="card-text">Planes de entrenamiento diseñados para ti, teniendo en cuenta tus objetivos y tu físico actual.</p>
+                            <a href="Ejp.html" class="btn btn-primary">Ver</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="IMG/DALL·E 2024-07-30 10.06.40 - A realistic image showing a group exercise training session with multiple people working out together in a gym setting, with a trainer leading the ses.webp" alt="Entrenamientos en Grupo">
+                        <div class="card-body">
+                            <h5 class="card-title">Objetivos</h5>
+                            <p class="card-text">Sesiones grupales para mantenerte motivado y en movimiento junto a otros.</p>
+                            <a href="objetivo.html" class="btn btn-primary">Ver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="testimonials" class="section">
+        <div class="container">
+            <h2>Testimonios</h2>
+            <p>"Gracias a su programa personalizado, logré perder 10 kilos y ahora me siento más saludable que nunca!" - María P.</p>
+            <p>"Las sesiones grupales son motivadoras y muy efectivas." - Juan D.</p>
+        </div>
+    </section>
+    
+    <section id="contact" class="section bg-light">
+        <div class="container">
+            <h2>Contacto</h2>
+            <p>Para más información o para agendar una consulta, por favor, contáctame a través del siguiente formulario:</p>
+            <form>
+                <div class="form-group">
+                    <label for="name">Nombre:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Tu nombre">
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo Electrónico:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Tu correo electrónico">
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensaje:</label>
+                    <textarea class="form-control" id="message" rows="4" placeholder="Tu mensaje"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+    </section>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.amazonaws.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

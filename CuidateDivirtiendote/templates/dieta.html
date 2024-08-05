@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dieta Personalizada - Pablo Ortiz</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dieta.css') }}">  
+</head>
+<body>
+    <div class="menu-bar">
+        <ul class="navigation">
+            <li><a href="Nut.html">Regresar</a></li>
+        </ul>
+        <div class="header-buttons text-right">
+            <button class="btn btn-outline-light">Cerrar Sesión</button>
+        </div>
+    </div>
+    
+    <section id="diet-plan" class="section bg-light">
+        <div class="container">
+            <h2 class="main-title">Dieta Personalizada</h2>
+            <p class="main-description">Diseñado para ayudarte a ganar masa muscular de manera saludable.</p>
+            <table class="diet-table">
+                <thead>
+                    <tr>
+                        <th>Día</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr onclick="toggleDetails('day1')">
+                        <td>Lunes</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="day1" class="meal-details">
+                                <p><strong>Desayuno:</strong> Avena con leche y frutas, 2 huevos revueltos, 1 tostada integral con aguacate</p>
+                                <p><strong>Almuerzo:</strong> Pollo a la parrilla con quinoa, ensalada de espinacas, 1 batata asada</p>
+                                <p><strong>Merienda:</strong> Yogur griego con nueces y miel, 1 plátano</p>
+                                <p><strong>Cena:</strong> Pescado al horno con arroz integral y brócoli al vapor</p>
+                                <p><strong>Snack:</strong> Batido de proteínas con almendras</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr onclick="toggleDetails('day2')">
+                        <td>Martes</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="day2" class="meal-details">
+                                <p><strong>Desayuno:</strong> Avena con leche y frutas, 2 huevos revueltos, 1 tostada integral con aguacate</p>
+                                <p><strong>Almuerzo:</strong> Pollo a la parrilla con quinoa, ensalada de espinacas, 1 batata asada</p>
+                                <p><strong>Merienda:</strong> Yogur griego con nueces y miel, 1 plátano</p>
+                                <p><strong>Cena:</strong> Pescado al horno con arroz integral y brócoli al vapor</p>
+                                <p><strong>Snack:</strong> Batido de proteínas con almendras</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr onclick="toggleDetails('day3')">
+                        <td>Miércoles</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="day3" class="meal-details">
+                                <p><strong>Desayuno:</strong> Avena con leche y frutas, 2 huevos revueltos, 1 tostada integral con aguacate</p>
+                                <p><strong>Almuerzo:</strong> Pollo a la parrilla con quinoa, ensalada de espinacas, 1 batata asada</p>
+                                <p><strong>Merienda:</strong> Yogur griego con nueces y miel, 1 plátano</p>
+                                <p><strong>Cena:</strong> Pescado al horno con arroz integral y brócoli al vapor</p>
+                                <p><strong>Snack:</strong> Batido de proteínas con almendras</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr onclick="toggleDetails('day4')">
+                        <td>Jueves</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="day4" class="meal-details">
+                                <p><strong>Desayuno:</strong> Avena con leche y frutas, 2 huevos revueltos, 1 tostada integral con aguacate</p>
+                                <p><strong>Almuerzo:</strong> Pollo a la parrilla con quinoa, ensalada de espinacas, 1 batata asada</p>
+                                <p><strong>Merienda:</strong> Yogur griego con nueces y miel, 1 plátano</p>
+                                <p><strong>Cena:</strong> Pescado al horno con arroz integral y brócoli al vapor</p>
+                                <p><strong>Snack:</strong> Batido de proteínas con almendras</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr onclick="toggleDetails('day5')">
+                        <td>Viernes</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="day5" class="meal-details">
+                                <p><strong>Desayuno:</strong> Avena con leche y frutas, 2 huevos revueltos, 1 tostada integral con aguacate</p>
+                                <p><strong>Almuerzo:</strong> Pollo a la parrilla con quinoa, ensalada de espinacas, 1 batata asada</p>
+                                <p><strong>Merienda:</strong> Yogur griego con nueces y miel, 1 plátano</p>
+                                <p><strong>Cena:</strong> Pescado al horno con arroz integral y brócoli al vapor</p>
+                                <p><strong>Snack:</strong> Batido de proteínas con almendras</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr onclick="toggleDetails('day6')">
+                        <td>Sábado</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="day6" class="meal-details">
+                                <p><strong>Desayuno:</strong> Avena con leche y frutas, 2 huevos revueltos, 1 tostada integral con aguacate</p>
+                                <p><strong>Almuerzo:</strong> Pollo a la parrilla con quinoa, ensalada de espinacas, 1 batata asada</p>
+                                <p><strong>Merienda:</strong> Yogur griego con nueces y miel, 1 plátano</p>
+                                <p><strong>Cena:</strong> Pescado al horno con arroz integral y brócoli al vapor</p>
+                                <p><strong>Snack:</strong> Batido de proteínas con almendras</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr onclick="toggleDetails('day7')">
+                        <td>Domingo</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="day7" class="meal-details">
+                                <p><strong>Desayuno:</strong> Avena con leche y frutas, 2 huevos revueltos, 1 tostada integral con aguacate</p>
+                                <p><strong>Almuerzo:</strong> Pollo a la parrilla con quinoa, ensalada de espinacas, 1 batata asada</p>
+                                <p><strong>Merienda:</strong> Yogur griego con nueces y miel, 1 plátano</p>
+                                <p><strong>Cena:</strong> Pescado al horno con arroz integral y brócoli al vapor</p>
+                                <p><strong>Snack:</strong> Batido de proteínas con almendras</p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script>
+        function toggleDetails(id) {
+            var element = document.getElementById(id);
+            if (element.style.display === "none" || element.style.display === "") {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

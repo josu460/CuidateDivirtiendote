@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutriólogo</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nut.css') }}">
+</head>
+<body>
+    <div class="menu-bar">
+        <ul class="navigation">
+            <li><a href="vista.html">Regresar</a></li>
+        </ul>
+        <div class="header-buttons text-right">
+            <button class="btn btn-outline-light">Cerrar Sesión</button>
+        </div>
+    </div>
+
+    <section id="about" class="section">
+        <div class="container">
+            <div class="row shadowed-section">
+                <div class="col-md-4 text-center">
+                    <img src="IMG/DALL·E 2024-07-30 14.48.47 - A realistic image showing a serious nutritionist in a professional setting, sitting at a table filled with fresh vegetables, fruits, and grains. The n.webp" alt="Perfil" class="img-fluid rounded-circle">
+                </div>
+                <div class="col-md-8">
+                    <h2>Arturo</h2>
+                    <p>Soy nutriólogo certificado con más de 10 años de experiencia en ayudar a personas a mejorar su salud a través de una alimentación adecuada. Mi enfoque está en crear planes de alimentación personalizados que se adapten a tus necesidades y objetivos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="services" class="section bg-light">
+        <div class="container">
+            <h2>Servicios</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="IMG/DALL·E 2024-07-30 09.49.51 - A realistic image showing a nutritionist's table with fresh vegetables, fruits, grains, and a balanced meal plan on a clipboard.webp" alt="Planes de Alimentación Personalizados">
+                        <div class="card-body">
+                            <h5 class="card-title">Planes de Alimentación</h5>
+                            <p class="card-text">Dietas equilibradas y personalizadas para mejorar tu salud y rendimiento.</p>
+                            <a href="PlanA.html" class="btn btn-primary">Ver</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="IMG/DALL·E 2024-07-30 09.46.11 - A realistic image for 'Pérdida de Peso' showing a person standing on a scale, with healthy foods like fruits, vegetables, and a water bottle nearby.webp" alt="Pérdida de Peso">
+                        <div class="card-body">
+                            <h5 class="card-title">Dieta</h5>
+                            <p class="card-text">Programas de nutrición diseñados para ayudarte a perder peso de manera saludable.</p>
+                            <a href="dieta.html" class="btn btn-primary">Ver</a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    
+    <section id="testimonials" class="section">
+        <div class="container">
+            <h2>Testimonios</h2>
+            <p>"Las dietas personalizadas me han ayudado a sentirme mejor y más enérgico cada día." - Laura G.</p>
+            <p>"Gracias a sus consejos de nutrición, he logrado mantener un peso saludable y mejorar mi salud en general." - Carlos M.</p>
+        </div>
+    </section>
+    
+    <section id="contact" class="section bg-light">
+        <div class="container">
+            <h2>Contacto</h2>
+            <p>Para más información o para agendar una consulta, por favor, contáctame a través del siguiente formulario:</p>
+            <form>
+                <div class="form-group">
+                    <label for="name">Nombre:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Tu nombre">
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo Electrónico:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Tu correo electrónico">
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensaje:</label>
+                    <textarea class="form-control" id="message" rows="4" placeholder="Tu mensaje"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+    </section>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.googleapis.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

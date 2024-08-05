@@ -74,7 +74,6 @@ def pruebaConexion():
     except Exception as ex:
         return jsonify({'status': 'Error de conexion', 'mensaje': str(ex)})
 
-
 @app.route('/menuUsuario')
 @login_required
 def menuUsuario():
@@ -97,8 +96,6 @@ def menuAdmin():
 @login_required
 def blog():
     return render_template('blog.html')
-
-
 
 @app.route('/ayuda')
 @login_required
@@ -355,6 +352,15 @@ def ActualizarEjercicio(id):
         except Exception as e:
             flash('Error al guardar el ejercicio:' + str(e))
             return redirect(url_for('verEjercicios'))
+
+
+# Rutas para los usuarios premium 
+
+@app.route('/vista')
+def vista():
+    return render_template('vista.html')
+
+
 
 if __name__ == '__main__':
     app.run(port=3000, debug=True)
