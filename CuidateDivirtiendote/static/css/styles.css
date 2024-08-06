@@ -8,8 +8,8 @@ body {
   display: flex;
   flex-direction: column;
   font-family: Arial, sans-serif;
-  background-color: #5cf049;
-  color: white;
+  background-color: #e7e4e0;
+  color: black;
   text-align: center;
 }
 
@@ -91,7 +91,7 @@ body {
   padding: 10px 20px; 
   background-color: #5cf049;
   border: none;
-  position: relative; /* Asegúrate de que el posicionamiento relativo esté habilitado */
+  position: relative;
 }
 
 .btn-primary:hover {

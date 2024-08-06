@@ -1,5 +1,6 @@
-{% extends "plantillauser.html" %}
+{%extends "plantillausergratis.html"%}
 {% block body %}
+
 <link rel="stylesheet" href="{{ url_for('static', filename='css/vistap.css') }}">
     <!-- Perfil -->
     <div class="container my-4" id="perfil">
@@ -10,12 +11,11 @@
                 <p><strong>Edad:</strong> 28</p>
                 <p><strong>Peso:</strong> 97 kg</p>
                 <p><strong>Tipo de cuerpo:</strong> Ectomorfo</p>
-                <p><strong>Membrsia:</strong> Premium</p>
+                <p><strong>Membrsia:</strong> Gratuita </p>
                 <p><strong>Fecha Expiracion:</strong> 29-07-2025</p>
             </div>
         </div>
     </div>
 
 
-
-{% endblock %}
+    {% endblock %}

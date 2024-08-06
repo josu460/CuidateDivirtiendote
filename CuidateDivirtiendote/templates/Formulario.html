@@ -9,14 +9,11 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/Cuenta.css') }}">
-
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/plantilla.css') }}">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary ">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <a class="navbar-brand" href="#">
-            <img src="{{ url_for('static', filename='IMG/cuerda.jpg') }}" alt="Logo" width="30" height="24"
-                class="d-inline-block align-text-top">
+            <img src="{{ url_for('static', filename='IMG/cuerda.jpg') }}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
             Cuidate-Divirtiendote!!
         </a>
 
@@ -172,83 +169,20 @@
                             <input type="text" id="especificar_alimento" name="especificar_alimento" class="form-control" placeholder="Especificar (si aplica)">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="tipo_cocina">¿Prefieres algún tipo de cocina?</label>
-                        <div class="input-group">
-                            <select id="tipo_cocina" name="tipo_cocina" class="form-control" required>
-                                <option value="">Selecciona una opción</option>
-                                <option value="internacional">Internacional</option>
-                                <option value="mexicana">Mexicana</option>
-                                <option value="mediterranea">Mediterránea</option>
-                            </select>
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
-                            </div>
-                        </div>
-                    </div>
                     
-                    <!-- Preferencias de Ejercicio -->
+                    <!-- Enviar -->
                     <div class="form-group">
-                        <label for="dias_ejercicio">¿Cuántos días a la semana puedes ejercitarte?</label>
-                        <div class="input-group">
-                            <select id="dias_ejercicio" name="dias_ejercicio" class="form-control" required>
-                                <option value="">Selecciona una opción</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="bi bi-calendar2-check"></i></span>
-                            </div>
-                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Enviar Encuesta</button>
                     </div>
-                    <div class="form-group">
-                        <label for="tipo_ejercicio">¿Prefieres algún tipo de ejercicio?</label>
-                        <div class="input-group">
-                            <select id="tipo_ejercicio" name="tipo_ejercicio" class="form-control" required>
-                                <option value="">Selecciona una opción</option>
-                                <option value="cardio">Cardio</option>
-                                <option value="fuerza">Fuerza</option>
-                                <option value="flexibilidad">Flexibilidad</option>
-                                <option value="mix">Mix</option>
-                            </select>
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="bi bi-heart"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="horario_preferido">¿Cuál es tu horario preferido para ejercitarte?</label>
-                        <div class="input-group">
-                            <select id="horario_preferido" name="horario_preferido" class="form-control" required>
-                                <option value="">Selecciona una opción</option>
-                                <option value="manana">Mañana</option>
-                                <option value="tarde">Tarde</option>
-                                <option value="noche">Noche</option>
-                            </select>
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="bi bi-clock"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="divider">
-                        <div class="divider-line"></div>
-                        <div class="divider-line"></div>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary btn-block">Enviar</button>
                 </form>
+                <div class="form-actions">
+                    <a href="#">¿Olvidaste tu contraseña?</a>
+                </div>
+                <div class="signup-link">
+                    <a href="#">¿No tienes una cuenta? Regístrate</a>
+                </div>
             </div>
         </div>
     </div>
-
-
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-
 </html>

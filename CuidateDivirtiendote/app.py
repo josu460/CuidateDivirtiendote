@@ -408,6 +408,10 @@ def formulario():
 def principalgratis():
     return render_template('principal.html')
 
+@app.route('/perfilgratis')
+def perfilgratis():
+    return render_template('perfilusuariog.html')
+
 if __name__ == '__main__':
     app.run(port=3000, debug=True)
     

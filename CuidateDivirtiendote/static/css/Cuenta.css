@@ -1,10 +1,9 @@
 /* Estilos generales */
 :root {
-    --primary: #5cf049;
-    --primary-light: #E1EEF5;
-    --secondary: #1D1D1D;
-    --background: #F4F1FF;
-    --text: #1F2346;
+    --primary: black;
+    --primary-light: black;
+    --secondary: black;
+    --text: black;
 }
 
 body {
@@ -169,4 +168,27 @@ body {
 .form-wrapper {
     width: 100%;
     max-width: 500px; /* Ancho máximo del formulario */
+}
+/* Cambiar el color de fondo y el color del texto de la navbar */
+.navbar {
+    background-color: #4caf50; /* Fondo negro */
+}
+
+.navbar .navbar-brand, 
+.navbar .nav-link {
+    color: black; /* Texto blanco para mayor contraste */
+}
+
+.navbar .nav-link.active {
+    color: black; /* Color gris para el enlace activo */
+}
+
+.navbar .nav-link:hover {
+    color: lightgrey; /* Color gris claro para el hover */
+}
+
+
+.navbar .navbar-brand img, 
+.navbar .nav-link i {
+    color: white;
 }
