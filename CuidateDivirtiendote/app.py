@@ -1,7 +1,8 @@
-from flask import Flask, request,jsonify, render_template, url_for, redirect, flash
+from flask import Flask, request,jsonify, render_template, url_for, redirect, flash, session
 from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+import MySQLdb.cursors
 #modelos 
 from models.ModelUser import ModelUser
 
@@ -42,7 +43,7 @@ def login():
                 elif logged_user.Rol == 'userp':
                     return redirect(url_for('vista'))
                 else:
-                    return redirect(url_for('principalgratis'))
+                    return redirect(url_for('perfilgratis'))
             else:
                 flash('Contraseña incorrecta', 'danger')
                 return redirect(url_for('login'))
@@ -397,21 +398,104 @@ def EjerciciosUsuarioP():
 
 #Rutas para los usuarios gratuitos
 @app.route('/planes')
-def planes():
-    return render_template('Planes.html')
+@login_required
+def membresias():
+    try:
+        # Asegúrate de usar DictCursor
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM membresias')
+        membresiasD = cursor.fetchall()
+        cursor.close()
+        print("Datos de membresías:", membresiasD)  
+        return render_template('Planes.html', membresias=membresiasD)
+    except Exception as e:
+        print(f"Error al consultar membresías: {e}")
+        return 'Error al consultar membresías'
+
+
 
 @app.route('/formulario')
 def formulario():
     return render_template('Formulario.html')
 
 @app.route('/principalgratis')
+@login_required
 def principalgratis():
     return render_template('principal.html')
 
 @app.route('/perfilgratis')
+@login_required
 def perfilgratis():
     return render_template('perfilusuariog.html')
 
+#funcion para las membresias
+
+@app.route('/comprar_membresia/<int:ID_membresia>', methods=['POST'])
+@login_required
+def comprar_membresia(ID_membresia):
+    if current_user.is_authenticated:
+        ID_usuario = current_user.ID_usuario
+        try:
+            cursor = mysql.connection.cursor()
+
+            # Insertar en usuarios_membresias
+            cursor.execute("""
+                INSERT INTO usuarios_membresias (ID_usuario, ID_membresia, Fecha_adquisicion, Fecha_caducidad)
+                VALUES (%s, %s, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 1 YEAR))
+            """, (ID_usuario, ID_membresia))
+
+            # Actualizar el rol del usuario a premium
+            cursor.execute("""
+                UPDATE usuarios
+                SET Rol = 'userp'
+                WHERE ID_usuario = %s
+            """, (ID_usuario,))
+
+            mysql.connection.commit()
+            cursor.close()
+            
+            flash('Has adquirido la membresía premium exitosamente!', 'success')
+            return redirect(url_for('vista'))
+        except Exception as e:
+            # Manejo de errores
+            print(f"Error: {str(e)}")
+            flash(f'Ocurrió un error: {str(e)}', 'danger')
+            return redirect(url_for('perfilgratis'))
+    else:
+        flash('Debes iniciar sesión para comprar una membresía.', 'warning')
+        return redirect(url_for('login'))
+
+
+#dietasgratis
+@app.route('/dietasgratis')
+@login_required
+def dietasgratis():
+    try:
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM dieta')
+        consultadi = cursor.fetchall()
+        cursor.close()
+        print("Datos de dietas:", consultadi)  
+        return render_template('dietasgratis.html', dietas=consultadi)
+    except Exception as e:
+        print(f"Error al consultar dietas: {e}")
+        return 'Error al consultar dietas'
+    
+#ejerciciosgratis
+@app.route('/ejerciciosgratis')
+@login_required
+def ejerciciosgratis():
+    try:
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM ejercicios')
+        consultaej = cursor.fetchall()
+        cursor.close()
+        print("Datos de ejercicios:", consultaej)  
+        return render_template('ejerciciosgratis.html', ejercicios=consultaej)
+    except Exception as e:
+        print(f"Error al consultar ejercicios: {e}")
+        return 'Error al consultar ejercicios'
+    
 if __name__ == '__main__':
     app.run(port=3000, debug=True)
     

@@ -1,0 +1,30 @@
+{% extends "plantillausergratis.html" %}
+{% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dietasgratis.css') }}">
+<body>
+    <!-- Contenido Principal -->
+    <div class="container text-center my-4">
+        <h2>Rutinas</h2>
+        <div class="dietas-container">
+            {% for ejercicio in ejercicios %}
+                <article class="dieta-card {% if loop.index == 2 %}dieta-card--primary{% endif %}">
+                    <div class="dieta-card__banner">
+                        {% if loop.index == 2 %}Más Popular{% else %}{{ ejercicio['Nombre'] }}{% endif %}
+                    </div>
+                    <h3>{{ ejercicio['Nombre'] }}</h3>
+                    <div class="dieta-card__description">
+                        {{ ejercicio['Grupo_muscular'] }}
+                    </div>
+                    <div class="dieta-card__description">
+                        {{ ejercicio['Tipo_ejercicio'] }}
+                    </div>
+
+                    <form action="" method="post">
+                        <button type="submit" class="btn btn-primary">Realizar</button>
+                    </form>
+                </article>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+{% endblock %}

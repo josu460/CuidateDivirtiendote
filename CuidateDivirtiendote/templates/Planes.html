@@ -1,74 +1,34 @@
-{%extends "plantillausergratis.html"%}
+{% extends "plantillausergratis.html" %}
 {% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/planes.css') }}">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/planes.css') }}">
 <body>
-
-        <!--Contenido Principal-->
-        <div class="container text-center my-4">
-            <h2>Cambiarte de plan </h2>
-            <div class="pricing-container">
-                <article class="pricing-card">
+    <!-- Contenido Principal -->
+    <div class="container text-center my-4">
+        <h2>Membresías Disponibles</h2>
+        <div class="pricing-container">
+            {% for membresia in membresias %}
+                <article class="pricing-card {% if loop.index == 2 %}pricing-card--primary{% endif %}">
                     <div class="pricing-card__banner">
-                        Plan Básico
+                        {% if loop.index == 2 %}Más Popular{% else %}{{ membresia['Nombre'] }}{% endif %}
                     </div>
-                    <h3>Plan Básico Gratis</h3>
+                    <h3>{{ membresia['Nombre'] }}</h3>
                     <div class="pricing-card__price--original">
-                        Gratuito
+                        ${{ membresia['Precio'] }}
                     </div>
                     <div class="pricing-card__price">
                         Incluye
                     </div>
                     <ul>
-                        <li>Acceso a la creación de un plan alimenticio.</li>
-                        <li>Plan de ejercicios automático.</li>
+                        <li>{{ membresia['Beneficios'] }}</li>
                     </ul>
-                    <button class="btn btn-primary" onclick="seleccionarPlanB()">Seleccionar</button>
+                    <form action="{{ url_for('comprar_membresia', ID_membresia=membresia['ID_membresia']) }}" method="post">
+                        <button type="submit" class="btn btn-primary">Comprar</button>
+                    </form>
                 </article>
-                <article class="pricing-card pricing-card--primary">
-                    <div class="pricing-card__banner">
-                        Más Popular
-                    </div>
-                    <h3>Plan Premium</h3>
-                    <div class="pricing-card__price--original">
-                        $149.99
-                    </div>
-                    <div class="pricing-card__price">
-                        Incluye
-                    </div>
-                    <ul>
-                        <li>Todo lo del Plan Básico.</li>
-                        <li>Formador personal.</li>
-                        <li>Nutriologo especializado.</li>
-                        <li>Experto en ejercicios.</li>
-                        <li>Planes alimenticios y de ejercicios personalizados.</li>
-                    </ul>
-                    <button class="btn btn-primary" onclick="seleccionarPlanP()">Seleccionar</button>
-                </article>
-            </div>
+            {% endfor %}
         </div>
     </div>
-    
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-
-        function seleccionarPlanB(){
-            window.location.href = "Formulario.html";
-        }
-        function abrirIniciarSesion() {
-            window.location.href = "sesion.html";
-        }
-
-        function AbrirCuneta(){
-            window.location.href = "Crearcuenta.html";
-        }
-
-        function seleccionarPlan(plan) {
-            alert("Has seleccionado el plan " + plan);
-            
-        }
-    </script>
+</body>
 
 {% endblock %}
