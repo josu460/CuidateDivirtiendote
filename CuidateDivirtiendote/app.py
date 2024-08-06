@@ -414,14 +414,26 @@ def membresias():
 
 
 
-@app.route('/formulario')
-def formulario():
-    return render_template('Formulario.html')
+#@app.route('/formulario')
+#def formulario():
+    #return render_template('Formulario.html')
 
 @app.route('/principalgratis')
-@login_required
 def principalgratis():
-    return render_template('principal.html')
+    ID_usuario = request.args.get('ID_usuario')
+    rutina_ejercicios_str = request.args.get('rutina_ejercicios')
+    rutina_alimentacion_str = request.args.get('rutina_alimentacion')
+
+    # Convierte las cadenas a diccionarios
+    try:
+        rutina_ejercicios = {dia: ejercicios.split(';') for dia, ejercicios in (item.split(':') for item in rutina_ejercicios_str.split(','))}
+        rutina_alimentacion = {dia: alimentos.split(';') for dia, alimentos in (item.split(':') for item in rutina_alimentacion_str.split(','))}
+    except ValueError as e:
+        print(f"Error al descomponer las cadenas: {e}")
+        rutina_ejercicios = {}
+        rutina_alimentacion = {}
+
+    return render_template('principal.html', ID_usuario=ID_usuario, rutina_ejercicios=rutina_ejercicios, rutina_alimentacion=rutina_alimentacion)
 
 @app.route('/perfilgratis')
 @login_required
@@ -496,6 +508,82 @@ def ejerciciosgratis():
         print(f"Error al consultar ejercicios: {e}")
         return 'Error al consultar ejercicios'
     
+
+
+@app.route('/formulario', methods=['GET', 'POST'])
+def formulario():
+    if request.method == 'POST':
+        ID_usuario = request.form['ID_usuario']
+        objetivo = request.form['objetivo']
+
+        dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+
+        if objetivo == 'perdida_peso':
+            rutina_ejercicios = {
+                "Lunes": ["Press de Banca con Barra - 4 series de 10 repeticiones", "Aperturas con Mancuernas - 3 series de 12 repeticiones", "Fondos en Paralelas - 3 series de 10 repeticiones"],
+                "Martes": ["Sentadillas con Barra - 4 series de 12 repeticiones", "Prensa de Piernas - 3 series de 15 repeticiones", "Elevaciones de Talones (Gemelos) - 4 series de 15 repeticiones"],
+                "Miércoles": ["Remo con Barra - 4 series de 10 repeticiones", "Jalones en Polea Alta - 3 series de 12 repeticiones", "Curl con Mancuernas - 3 series de 12 repeticiones"],
+                "Jueves": ["Flexiones de Brazos - 4 series de 15 repeticiones", "Aperturas con Pesas en Banco Inclinado - 3 series de 12 repeticiones", "Fondos en Banco - 3 series de 10 repeticiones"],
+                "Viernes": ["Zancadas con Mancuernas - 4 series de 12 repeticiones por pierna", "Elevaciones de Talones (Gemelos) en Prensa - 4 series de 15 repeticiones", "Abdominales en Máquina - 3 series de 15 repeticiones"],
+                "Sábado": ["Circuito de Cardio: 30 minutos de trote o bicicleta", "Plancha - 3 series de 60 segundos", "Burpees - 3 series de 10 repeticiones"],
+                "Domingo": ["Estiramiento y Flexibilidad: 30 minutos de yoga o estiramientos", "Caminata ligera - 30 minutos"]
+            }
+            rutina_alimentacion = {
+                "Lunes": ["Desayuno: Avena con frutas y yogur bajo en grasa.", "Almuerzo: Pechuga de pollo a la plancha con ensalada.", "Cena: Pescado al horno con verduras al vapor."],
+                "Martes": ["Desayuno: Yogur griego con granola y fresas.", "Almuerzo: Ensalada de atún con garbanzos.", "Cena: Pechuga de pavo con espárragos."],
+                "Miércoles": ["Desayuno: Smoothie de espinacas y plátano con leche de almendras.", "Almuerzo: Tofu salteado con verduras y quinoa.", "Cena: Sopa de verduras y una porción de ensalada."],
+                "Jueves": ["Desayuno: Tostadas integrales con aguacate y huevo.", "Almuerzo: Pechuga de pollo con brócoli al vapor.", "Cena: Pescado a la parrilla con espinacas salteadas."],
+                "Viernes": ["Desayuno: Pudding de chía con frutas mixtas.", "Almuerzo: Ensalada de pollo con aguacate y tomate.", "Cena: Tortilla de claras de huevo con espinacas."],
+                "Sábado": ["Desayuno: Batido de proteínas con frutos rojos.", "Almuerzo: Ensalada de garbanzos con verduras frescas.", "Cena: Filete de salmón con verduras al horno."],
+                "Domingo": ["Desayuno: Pan integral con mantequilla de almendra y rodajas de plátano.", "Almuerzo: Ensalada de atún con verduras variadas.", "Cena: Pechuga de pollo al horno con calabacines."]
+            }
+        elif objetivo == 'ganancia_muscular':
+            rutina_ejercicios = {
+                "Lunes": ["Dominadas - 4 series de 8 repeticiones (o hasta el fallo)", "Remo con Barra - 3 series de 10 repeticiones", "Curl con Mancuernas - 3 series de 12 repeticiones"],
+                "Martes": ["Press de Banca con Barra - 4 series de 8 repeticiones", "Aperturas con Mancuernas en Banco Inclinado - 3 series de 10 repeticiones", "Extensiones de Tríceps en Polea - 3 series de 12 repeticiones"],
+                "Miércoles": ["Sentadillas con Barra - 4 series de 8 repeticiones", "Prensa de Piernas - 3 series de 10 repeticiones", "Elevaciones de Talones (Gemelos) - 4 series de 15 repeticiones"],
+                "Jueves": ["Flexiones de Brazos con Peso - 4 series de 10 repeticiones", "Press Militar con Barra - 4 series de 8 repeticiones", "Elevaciones Laterales con Mancuernas - 3 series de 12 repeticiones"],
+                "Viernes": ["Peso Muerto - 4 series de 8 repeticiones", "Remo con Mancuernas - 3 series de 10 repeticiones", "Curl de Bíceps con Barra - 3 series de 12 repeticiones"],
+                "Sábado": ["Entrenamiento en Intervalos de Alta Intensidad (HIIT) - 30 minutos", "Abdominales - 3 series de 15 repeticiones", "Flexiones de Brazo con Elevación de Pierna - 3 series de 10 repeticiones"],
+                "Domingo": ["Descanso activo: caminata ligera o estiramientos"]
+            }
+            rutina_alimentacion = {
+                "Lunes": ["Desayuno: Huevos revueltos con espinacas y tostadas integrales.", "Almuerzo: Carne magra con quinoa y brócoli.", "Cena: Batido de proteínas y un puñado de nueces."],
+                "Martes": ["Desayuno: Tortilla de claras con champiñones y pimientos.", "Almuerzo: Pollo a la parrilla con batata asada.", "Cena: Yogur griego con granola y miel."],
+                "Miércoles": ["Desayuno: Smoothie de plátano con proteína en polvo.", "Almuerzo: Filete de ternera con arroz integral y espárragos.", "Cena: Ensalada de atún con aguacate y maíz."],
+                "Jueves": ["Desayuno: Avena con leche y frutos secos.", "Almuerzo: Pavo molido con pasta integral y salsa de tomate.", "Cena: Batido de proteínas con frutos rojos."],
+                "Viernes": ["Desayuno: Huevos cocidos con aguacate y pan integral.", "Almuerzo: Salmón al horno con espinacas y arroz.", "Cena: Ensalada de pollo con queso feta."],
+                "Sábado": ["Desayuno: Tortilla de espinacas con queso.", "Almuerzo: Hamburguesas de pavo con batatas asadas.", "Cena: Pescado a la parrilla con ensalada de aguacate."],
+                "Domingo": ["Desayuno: Panqueques de avena con frutas y sirope de arce.", "Almuerzo: Pollo con quinoa y verduras al vapor.", "Cena: Ensalada de garbanzos con vegetales y hummus."]
+            }
+        else:  # Mantenimiento
+            rutina_ejercicios = {
+                "Lunes": ["Sentadillas con Barra - 4 series de 10 repeticiones", "Prensa de Piernas - 3 series de 12 repeticiones", "Elevaciones de Talones (Gemelos) - 4 series de 15 repeticiones"],
+                "Martes": ["Press de Banca con Mancuernas - 4 series de 10 repeticiones", "Aperturas con Mancuernas en Banco Inclinado - 3 series de 12 repeticiones", "Extensiones de Tríceps en Polea - 3 series de 12 repeticiones"],
+                "Miércoles": ["Remo con Barra - 4 series de 10 repeticiones", "Jalones en Polea Alta - 3 series de 12 repeticiones", "Curl con Mancuernas - 3 series de 12 repeticiones"],
+                "Jueves": ["Flexiones de Brazos - 4 series de 15 repeticiones", "Press Militar con Mancuernas - 4 series de 10 repeticiones", "Elevaciones Laterales con Mancuernas - 3 series de 12 repeticiones"],
+                "Viernes": ["Peso Muerto - 4 series de 10 repeticiones", "Remo con Mancuernas - 3 series de 12 repeticiones", "Curl de Bíceps con Barra - 3 series de 15 repeticiones"],
+                "Sábado": ["Entrenamiento en Circuito: 30 minutos de ejercicios de cuerpo completo", "Abdominales - 3 series de 20 repeticiones", "Burpees - 3 series de 10 repeticiones"],
+                "Domingo": ["Estiramiento y Flexibilidad: 30 minutos de yoga o estiramientos", "Caminata ligera - 30 minutos"]
+            }
+            rutina_alimentacion = {
+                "Lunes": ["Desayuno: Yogur griego con frutas y nueces.", "Almuerzo: Ensalada de pollo con aderezo de yogur.", "Cena: Sopa de verduras con trozos de pollo."],
+                "Martes": ["Desayuno: Smoothie de espinacas y plátano.", "Almuerzo: Atún a la plancha con arroz integral.", "Cena: Pechuga de pollo con verduras al vapor."],
+                "Miércoles": ["Desayuno: Avena con almendras y miel.", "Almuerzo: Ensalada de quinoa con garbanzos.", "Cena: Salmón al horno con espárragos."],
+                "Jueves": ["Desayuno: Tortilla de claras con champiñones.", "Almuerzo: Pechuga de pavo con batata asada.", "Cena: Ensalada de pasta con vegetales."],
+                "Viernes": ["Desayuno: Pan integral con aguacate y huevo poché.", "Almuerzo: Filete de ternera con espinacas.", "Cena: Tacos de pescado con salsa de mango."],
+                "Sábado": ["Desayuno: Batido de proteínas con frutos rojos.", "Almuerzo: Hamburguesa de pavo con ensalada.", "Cena: Pechuga de pollo a la parrilla con verduras."],
+                "Domingo": ["Desayuno: Panqueques de avena con plátano.", "Almuerzo: Ensalada de garbanzos con aderezo de tahini.", "Cena: Sopa de lentejas con espinacas."]
+            }
+
+        # Pasa los datos como cadenas a la siguiente ruta
+        rutina_ejercicios_str = ",".join([f"{dia}:{';'.join(ejercicios)}" for dia, ejercicios in rutina_ejercicios.items()])
+        rutina_alimentacion_str = ",".join([f"{dia}:{';'.join(alimentos)}" for dia, alimentos in rutina_alimentacion.items()])
+
+        return redirect(url_for('principalgratis', ID_usuario=ID_usuario, rutina_ejercicios=rutina_ejercicios_str, rutina_alimentacion=rutina_alimentacion_str))
+
+    return render_template('formulario.html')
+
 if __name__ == '__main__':
     app.run(port=3000, debug=True)
     

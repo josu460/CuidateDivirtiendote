@@ -1,294 +1,81 @@
-{%extends "plantillausergratis.html"%}
-{% block body %}
-    <link rel="stylesheet" href="principal.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principal</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/principal.css') }}">
+</head>
 <body>
-
-    <!--Navegacion-->
     <div class="full-background">
         <div class="menu-wrapper">
             <div class="menu-bar">
                 <ul class="navigation">
-                    <li>
-                        <a href="#" id="btn-rutina" title="Entrenamiento">Rutina</a>
-                    </li>
-                    <li>
-                        <a href="#" id="btn-alimentacion" title="Alimentacion">Alimentacion</a>
-                    </li>
-                    <li>
-                        <a href="#" title="Usuario">Usuario</a>
-                    </li>
-                    <li>
-                        <a href="#" title="Configuraciones">Configuraciones</a>
-                    </li>
+                    <li><a href="#" id="btn-rutina" title="Entrenamiento">Rutina</a></li>
+                    <li><a href="#" id="btn-alimentacion" title="Alimentacion">Alimentacion</a></li>
+                    <li><a href="#" title="Usuario">Usuario</a></li>
+                    <li><a href="#" title="Configuraciones">Configuraciones</a></li>
                 </ul>
             </div> 
         </div> 
     </div> 
-    
+    <div class="container">
+        <h2>Rutina Personalizada</h2>
 
-    <!-- Plan Semanal de Comidas -->
-    <div class="content-container">
-    <div id="tabla-alimentacion" class="container d-none">
-        <h2 class="text-center mb-4 text-success">Plan Semanal de Comidas</h2>
-        <table class="table table-bordered">
-            <thead class="thead-light">
-                <tr>
-                    <th>Día</th>
-                    <th>Desayuno</th>
-                    <th>Almuerzo</th>
-                    <th>Cena</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Contenido de la tabla aquí -->
-                <tr>
-                    <td>Lunes</td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/01/19/18/00/hamburger-1140839_1280.jpg" alt="Desayuno lunes" class="img-fluid">
-                        <p>Huevo con arroz</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2017/05/23/22/35/tacos-2338575_1280.jpg" alt="Almuerzo lunes" class="img-fluid">
-                        <p>Tortas de papa</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2017/05/07/08/56/salmon-2291835_1280.jpg" alt="Cena lunes" class="img-fluid">
-                        <p>Ensalada de salmón</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Martes</td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/01/19/18/00/hamburger-1140839_1280.jpg" alt="Desayuno martes" class="img-fluid">
-                        <p>Comida 1</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2017/05/23/22/35/tacos-2338575_1280.jpg" alt="Almuerzo martes" class="img-fluid">
-                        <p>Comida 2</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2017/05/07/08/56/salmon-2291835_1280.jpg" alt="Cena martes" class="img-fluid">
-                        <p>Comida 3</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Miércoles</td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2017/06/06/22/45/bread-2378379_1280.jpg" alt="Desayuno miércoles" class="img-fluid">
-                        <p>Pan con aguacate</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2015/04/08/13/13/food-712665_1280.jpg" alt="Almuerzo miércoles" class="img-fluid">
-                        <p>Pasta al pesto</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2017/05/07/08/56/salmon-2291835_1280.jpg" alt="Cena miércoles" class="img-fluid">
-                        <p>Filete de pollo con vegetales</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Jueves</td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/01/19/18/00/hamburger-1140839_1280.jpg" alt="Desayuno jueves" class="img-fluid">
-                        <p>Avena con frutas</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/02/05/15/27/lunch-1171568_1280.jpg" alt="Almuerzo jueves" class="img-fluid">
-                        <p>Ensalada César</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/01/19/18/00/hamburger-1140839_1280.jpg" alt="Cena jueves" class="img-fluid">
-                        <p>Sopa de verduras</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Viernes</td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_1280.jpg" alt="Desayuno viernes" class="img-fluid">
-                        <p>Yogur con granola</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2014/09/12/15/49/pizza-444662_1280.jpg" alt="Almuerzo viernes" class="img-fluid">
-                        <p>Pizza margarita</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2017/05/07/08/56/salmon-2291835_1280.jpg" alt="Cena viernes" class="img-fluid">
-                        <p>Tilapia al horno</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Sábado</td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/01/19/18/00/hamburger-1140839_1280.jpg" alt="Desayuno sábado" class="img-fluid">
-                        <p>Batido de plátano</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/01/19/18/00/hamburger-1140839_1280.jpg" alt="Almuerzo sábado" class="img-fluid">
-                        <p>Pollo asado</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2017/05/07/08/56/salmon-2291835_1280.jpg" alt="Cena sábado" class="img-fluid">
-                        <p>Ensalada de quinoa</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Domingo</td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/01/19/18/00/hamburger-1140839_1280.jpg" alt="Desayuno domingo" class="img-fluid">
-                        <p>Panqueques con miel</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2017/05/23/22/35/tacos-2338575_1280.jpg" alt="Almuerzo domingo" class="img-fluid">
-                        <p>Tacos de carne</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2017/05/07/08/56/salmon-2291835_1280.jpg" alt="Cena domingo" class="img-fluid">
-                        <p>Pizza de vegetales</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <!-- Rutina de Ejercicios -->
+        <div id="tabla-rutina">
+            <h3>Ejercicios</h3>
+            <div class="row">
+                {% if rutina_ejercicios %}
+                    {% for dia, ejercicios in rutina_ejercicios.items() %}
+                        <div class="col-md-4">
+                            <h4>{{ dia }}</h4>
+                            <ul>
+                                {% for ejercicio in ejercicios %}
+                                    <li>{{ ejercicio }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No se ha definido una rutina de ejercicios.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Plan de Alimentación -->
+        <div id="tabla-alimentacion" class="d-none">
+            <h3>Alimentación</h3>
+            <div class="row">
+                {% if rutina_alimentacion %}
+                    {% for dia, alimentos in rutina_alimentacion.items() %}
+                        <div class="col-md-4">
+                            <h4>{{ dia }}</h4>
+                            <ul>
+                                {% for alimento in alimentos %}
+                                    <li>{{ alimento }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No se ha definido un plan de alimentación.</p>
+                {% endif %}
+            </div>
+        </div>
     </div>
-</div>
-    <!-- Plan Semanal de Ejercicios -->
-    <div class="content-container">
-    <div id="tabla-rutina" class="container d-none">
-        <h2 class="text-center mb-4 text-success">Plan Semanal de Ejercicios</h2>
-        <table class="table table-bordered">
-            <thead class="thead-light">
-                <tr>
-                    <th>Día</th>
-                    <th>Ejercicio 1</th>
-                    <th>Ejercicio 2</th>
-                    <th>Ejercicio 3</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-                <tr>
-                    <td>Lunes</td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/11/21/16/59/woman-1846527_1280.jpg" alt="Ejercicio 1 lunes" class="img-fluid">
-                        <p>Sentadillas</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/11/18/14/01/sport-1834843_1280.jpg" alt="Ejercicio 2 lunes" class="img-fluid">
-                        <p>Flexiones</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/11/21/16/59/woman-1846527_1280.jpg" alt="Ejercicio 3 lunes" class="img-fluid">
-                        <p>Plancha</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Martes</td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/11/18/14/01/sport-1834843_1280.jpg" alt="Ejercicio 1 martes" class="img-fluid">
-                        <p>Abdominales</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/11/21/16/59/woman-1846527_1280.jpg" alt="Ejercicio 2 martes" class="img-fluid">
-                        <p>Burpees</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/11/18/14/01/sport-1834843_1280.jpg" alt="Ejercicio 3 martes" class="img-fluid">
-                        <p>Zancadas</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Miércoles</td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/11/21/16/59/woman-1846527_1280.jpg" alt="Ejercicio 1 miércoles" class="img-fluid">
-                        <p>Saltos de tijera</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/11/18/14/01/sport-1834843_1280.jpg" alt="Ejercicio 2 miércoles" class="img-fluid">
-                        <p>Mountain climbers</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/11/21/16/59/woman-1846527_1280.jpg" alt="Ejercicio 3 miércoles" class="img-fluid">
-                        <p>Bicicleta estática</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Jueves</td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/11/18/14/01/sport-1834843_1280.jpg" alt="Ejercicio 1 jueves" class="img-fluid">
-                        <p>Correr</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/11/21/16/59/woman-1846527_1280.jpg" alt="Ejercicio 2 jueves" class="img-fluid">
-                        <p>Saltar la cuerda</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/11/18/14/01/sport-1834843_1280.jpg" alt="Ejercicio 3 jueves" class="img-fluid">
-                        <p>Elevación de talones</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Viernes</td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/11/21/16/59/woman-1846527_1280.jpg" alt="Ejercicio 1 viernes" class="img-fluid">
-                        <p>Estocadas</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/11/18/14/01/sport-1834843_1280.jpg" alt="Ejercicio 2 viernes" class="img-fluid">
-                        <p>Dominadas</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/11/21/16/59/woman-1846527_1280.jpg" alt="Ejercicio 3 viernes" class="img-fluid">
-                        <p>Remo</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Sábado</td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/11/21/16/59/woman-1846527_1280.jpg" alt="Ejercicio 1 sábado" class="img-fluid">
-                        <p>Saltos laterales</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/11/18/14/01/sport-1834843_1280.jpg" alt="Ejercicio 2 sábado" class="img-fluid">
-                        <p>Fondos</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/11/21/16/59/woman-1846527_1280.jpg" alt="Ejercicio 3 sábado" class="img-fluid">
-                        <p>Flexibilidad</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Domingo</td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/11/21/16/59/woman-1846527_1280.jpg" alt="Ejercicio 1 domingo" class="img-fluid">
-                        <p>Descanso</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/11/18/14/01/sport-1834843_1280.jpg" alt="Ejercicio 2 domingo" class="img-fluid">
-                        <p>Yoga</p>
-                    </td>
-                    <td>
-                        <img src="https://cdn.pixabay.com/photo/2016/11/21/16/59/woman-1846527_1280.jpg" alt="Ejercicio 3 domingo" class="img-fluid">
-                        <p>Pilates</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-    <!-- Custom Script -->
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="index.js"></script> -->
+
     <script>
-      document.getElementById('btn-rutina').addEventListener('click', function() {
-        document.getElementById('tabla-alimentacion').classList.add('d-none');
-        document.getElementById('tabla-rutina').classList.remove('d-none');
-    });
+        document.getElementById('btn-rutina').addEventListener('click', function() {
+            document.getElementById('tabla-alimentacion').classList.add('d-none');
+            document.getElementById('tabla-rutina').classList.remove('d-none');
+        });
 
-    document.getElementById('btn-alimentacion').addEventListener('click', function() {
-        document.getElementById('tabla-rutina').classList.add('d-none');
-        document.getElementById('tabla-alimentacion').classList.remove('d-none');
-    });
+        document.getElementById('btn-alimentacion').addEventListener('click', function() {
+            document.getElementById('tabla-rutina').classList.add('d-none');
+            document.getElementById('tabla-alimentacion').classList.remove('d-none');
+        });
     </script>
-
-{% endblock %}
+</body>
+</html>

@@ -1,5 +1,5 @@
 /* Navbar */
-.navbar {
+body .navbar {
     background-color: #4caf50 !important;
     display: flex;
     justify-content: space-between;
@@ -8,28 +8,28 @@
     width: 100%;
 }
 
-.navbar-title {
+body .navbar-title {
     color: white !important;
     margin: 0;
     text-align: center;
     flex-grow: 1;
 }
 
-.navbar-links {
+body .navbar-links {
     display: flex;
     gap: 20px;
 }
 
-.navbar-links a {
+body .navbar-links a {
     color: white !important;
     text-decoration: none;
 }
 
-.navbar-links a:hover {
+body .navbar-links a:hover {
     text-decoration: underline;
 }
 
-.nombre-usuarioP {
+body .nombre-usuarioP {
     color: white;
     margin-left: auto;
     margin-right: 20px;
@@ -40,7 +40,7 @@
     padding-bottom: 100px;
 }
 
-.footer {
+body .footer {
     background-color: #4caf50 !important; 
     padding: 10px 0;
     width: 100%;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Formulario de Salud</title>
@@ -7,182 +8,125 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/Cuenta.css') }}">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css">
+    
 </head>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cuenta.css') }}">
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <a class="navbar-brand" href="#">
-            <img src="{{ url_for('static', filename='IMG/cuerda.jpg') }}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-            Cuidate-Divirtiendote!!
-        </a>
-
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Regresar</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
     <div class="container-fluid login-container">
         <div class="row justify-content-center align-items-center">
-            <div class="col-md-6 form-wrapper">
+            <div class="col-md-8 form-wrapper">
                 <div class="welcome-message">
                     <h1>¡Genial! &#x1F4AA;</h1>
-                    <p>¡Por favor, Realiza la encuesta!</p>
+                    <p>¡Por favor, realiza la encuesta!</p>
                 </div>
-                <form class="login-form">
-                    <div class="divider">
-                        <div class="divider-line"></div>
-                        <div class="divider-line"></div>
+
+                <!-- Mensajes Flash -->
+                {% with messages = get_flashed_messages(with_categories=True) %}
+                {% if messages %}
+                <div class="alert-container">
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
                     </div>
-                    
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% endwith %}
+
+                <form class="login-form" action="/formulario" method="POST">
+                    <!-- Campo oculto para el ID de usuario -->
+                    <input type="hidden" name="ID_usuario" value="{{ ID_usuario }}">
+                    <!-- Asegúrate de pasar el ID_usuario -->
+
                     <!-- Información Personal -->
                     <div class="form-group">
-                        <label for="nombre">Nombre completo:</label>
-                        <div class="input-group">
-                            <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Tu nombre completo" required>
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="bi bi-person"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label for="edad">Edad:</label>
-                        <div class="input-group">
-                            <input type="number" id="edad" name="edad" class="form-control" placeholder="Tu edad" required>
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="bi bi-calendar"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="genero">Género:</label>
-                        <div class="input-group">
-                            <select id="genero" name="genero" class="form-control" required>
-                                <option value="">Selecciona tu género</option>
-                                <option value="masculino">Masculino</option>
-                                <option value="femenino">Femenino</option>
-                                <option value="otro">Otro</option>
-                            </select>
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="bi bi-gender-ambiguous"></i></span>
-                            </div>
-                        </div>
+                        <input type="number" id="edad" name="edad" class="form-control" placeholder="Tu edad" required>
                     </div>
                     <div class="form-group">
                         <label for="peso">Peso (kg):</label>
-                        <div class="input-group">
-                            <input type="number" id="peso" name="peso" class="form-control" placeholder="Tu peso en kg" required>
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="bi bi-scale"></i></span>
-                            </div>
-                        </div>
+                        <input type="number" id="peso" name="peso" class="form-control" placeholder="Tu peso en kg"
+                            required>
                     </div>
                     <div class="form-group">
                         <label for="altura">Altura (cm):</label>
-                        <div class="input-group">
-                            <input type="number" id="altura" name="altura" class="form-control" placeholder="Tu altura en cm" required>
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="bi bi-rulers"></i></span>
-                            </div>
-                        </div>
+                        <input type="number" id="altura" name="altura" class="form-control"
+                            placeholder="Tu altura en cm" required>
                     </div>
-                    
+
                     <!-- Objetivos de Salud -->
                     <div class="form-group">
                         <label for="objetivo">¿Cuál es tu objetivo principal?</label>
-                        <div class="input-group">
-                            <select id="objetivo" name="objetivo" class="form-control" required>
-                                <option value="">Selecciona tu objetivo</option>
-                                <option value="perdida_peso">Pérdida de peso</option>
-                                <option value="ganancia_muscular">Ganancia muscular</option>
-                                <option value="mantenimiento">Mantenimiento</option>
-                            </select>
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="bi bi-flag"></i></span>
-                            </div>
-                        </div>
+                        <select id="objetivo" name="objetivo" class="form-control" required>
+                            <option value="">Selecciona tu objetivo</option>
+                            <option value="perdida_peso">Pérdida de peso</option>
+                            <option value="ganancia_muscular">Ganancia muscular</option>
+                            <option value="mantenimiento">Mantenimiento</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="condicion_medica">¿Tienes alguna condición médica?</label>
-                        <div class="input-group">
-                            <select id="condicion_medica" name="condicion_medica" class="form-control" required>
-                                <option value="">Selecciona una opción</option>
-                                <option value="si">Sí</option>
-                                <option value="no">No</option>
-                            </select>
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="bi bi-exclamation-circle"></i></span>
-                            </div>
-                        </div>
-                        <div class="form-group mt-2">
-                            <input type="text" id="especificar_condicion" name="especificar_condicion" class="form-control" placeholder="Especificar (si aplica)">
-                        </div>
+                        <label for="condicion_medica">¿Tienes alguna condición médica? (opcional)</label>
+                        <textarea id="condicion_medica" name="condicion_medica" class="form-control"
+                            placeholder="Especifica cualquier condición médica"></textarea>
+                    </div>
+
+                    <!-- Dieta y Comidas -->
+                    <div class="form-group">
+                        <label for="dieta">¿Qué tipo de dieta sigues?</label>
+                        <select id="dieta" name="dieta" class="form-control" required>
+                            <option value="">Selecciona tu dieta</option>
+                            <option value="vegetariana">Vegetariana</option>
+                            <option value="vegana">Vegana</option>
+                            <option value="omnívora">Omnívora</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="dieta">¿Sigues alguna dieta específica?</label>
-                        <div class="input-group">
-                            <select id="dieta" name="dieta" class="form-control" required>
-                                <option value="">Selecciona una opción</option>
-                                <option value="vegetariana">Vegetariana</option>
-                                <option value="vegana">Vegana</option>
-                                <option value="sin_gluten">Sin gluten</option>
-                                <option value="ninguna">Ninguna</option>
-                            </select>
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="bi bi-apple"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Hábitos Alimenticios -->
-                    <div class="form-group">
-                        <label for="comidas_dia">¿Cuántas comidas al día prefieres?</label>
-                        <div class="input-group">
-                            <select id="comidas_dia" name="comidas_dia" class="form-control" required>
-                                <option value="">Selecciona una opción</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="bi bi-list"></i></span>
-                            </div>
-                        </div>
+                        <label for="comidas_dia">¿Cuántas comidas al día?</label>
+                        <input type="number" id="comidas_dia" name="comidas_dia" class="form-control"
+                            placeholder="Número de comidas al día" required>
                     </div>
                     <div class="form-group">
-                        <label for="alimentos_evitar">¿Hay algún alimento que prefieras evitar?</label>
-                        <div class="input-group">
-                            <select id="alimentos_evitar" name="alimentos_evitar" class="form-control" required>
-                                <option value="">Selecciona una opción</option>
-                                <option value="si">Sí</option>
-                                <option value="no">No</option>
-                            </select>
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="bi bi-x-circle"></i></span>
-                            </div>
-                        </div>
-                        <div class="form-group mt-2">
-                            <input type="text" id="especificar_alimento" name="especificar_alimento" class="form-control" placeholder="Especificar (si aplica)">
-                        </div>
+                        <label for="alimentos_evitar">¿Hay algún alimento que debas evitar? (opcional)</label>
+                        <textarea id="alimentos_evitar" name="alimentos_evitar" class="form-control"
+                            placeholder="Especifica los alimentos a evitar"></textarea>
                     </div>
-                    
-                    <!-- Enviar -->
+
+                    <!-- Cocina y Ejercicio -->
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-block">Enviar Encuesta</button>
+                        <label for="tipo_cocina">¿Qué tipo de cocina prefieres?</label>
+                        <input type="text" id="tipo_cocina" name="tipo_cocina" class="form-control"
+                            placeholder="Tipo de cocina preferida">
                     </div>
+                    <div class="form-group">
+                        <label for="dias_ejercicio">¿Cuántos días a la semana haces ejercicio?</label>
+                        <input type="number" id="dias_ejercicio" name="dias_ejercicio" class="form-control"
+                            placeholder="Número de días" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo_ejercicio">¿Qué tipo de ejercicio realizas?</label>
+                        <input type="text" id="tipo_ejercicio" name="tipo_ejercicio" class="form-control"
+                            placeholder="Tipo de ejercicio">
+                    </div>
+                    <div class="form-group">
+                        <label for="horario_preferente">Horario preferente para el ejercicio (opcional):</label>
+                        <input type="text" id="horario_preferente" name="horario_preferente" class="form-control"
+                            placeholder="Horario preferido para el ejercicio">
+                    </div>
+
+                    <!-- Botón de Envío -->
+                    <button type="submit" class="btn btn-primary">Enviar</button>
                 </form>
-                <div class="form-actions">
-                    <a href="#">¿Olvidaste tu contraseña?</a>
-                </div>
-                <div class="signup-link">
-                    <a href="#">¿No tienes una cuenta? Regístrate</a>
-                </div>
             </div>
         </div>
     </div>
+
+    <!-- Scripts de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='js/formulario.js') }}"></script>
 </body>
+
 </html>
